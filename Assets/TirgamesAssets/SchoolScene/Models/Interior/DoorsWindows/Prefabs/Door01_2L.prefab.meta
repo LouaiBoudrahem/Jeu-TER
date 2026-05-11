@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9ef35130d0b5da043a6d1a003805bdb2
+timeCreated: 1446378127
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/DoorsWindows/Prefabs/Door01_2L.prefab
+  uploadId: 903528

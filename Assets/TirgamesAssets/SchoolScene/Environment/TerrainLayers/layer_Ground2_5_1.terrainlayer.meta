@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0190c7dffc24212409a2728bde366246
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Environment/TerrainLayers/layer_Ground2_5_1.terrainlayer
+  uploadId: 903528

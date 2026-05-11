@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0168a9ab7aca40f4da408d2dbcef5b4e
+timeCreated: 1464530059
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Science/Physics/Materials/ElectroWires01.mat
+  uploadId: 903528

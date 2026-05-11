@@ -1,0 +1,4 @@
+Database Export
+File corrupted.
+Partial data only.
+Recovery required.

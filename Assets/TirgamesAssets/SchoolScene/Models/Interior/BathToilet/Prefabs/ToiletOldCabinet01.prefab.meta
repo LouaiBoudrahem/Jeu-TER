@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e63186b1966a7984d82e5411eea0f7c5
+timeCreated: 1483448602
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/BathToilet/Prefabs/ToiletOldCabinet01.prefab
+  uploadId: 903528

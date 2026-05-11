@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7d33a4e19ec2705488b3085db0b0112f
+timeCreated: 1483120789
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/BathToilet/Prefabs/Sink01Paper.prefab
+  uploadId: 903528

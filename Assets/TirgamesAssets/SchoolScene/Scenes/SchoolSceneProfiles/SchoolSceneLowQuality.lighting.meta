@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 325d299d03ff169449d02cd74e7c925a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Scenes/SchoolSceneProfiles/SchoolSceneLowQuality.lighting
+  uploadId: 903528

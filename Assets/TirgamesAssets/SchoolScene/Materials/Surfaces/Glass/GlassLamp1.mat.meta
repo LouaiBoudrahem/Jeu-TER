@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 92e731f385cfbe64e9b3d94c757bc8bf
+timeCreated: 1443076316
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Glass/GlassLamp1.mat
+  uploadId: 903528

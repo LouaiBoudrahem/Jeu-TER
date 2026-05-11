@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2eb579332aebc5b48a39193933894824
+timeCreated: 1521561922
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/DoorsWindows/Prefabs/Door01Opaque_Opened.prefab
+  uploadId: 903528

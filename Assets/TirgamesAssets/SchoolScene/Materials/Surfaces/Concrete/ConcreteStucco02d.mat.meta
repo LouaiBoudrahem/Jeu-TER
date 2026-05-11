@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bd9c31cf25c758a408b43def9263ab6e
+timeCreated: 1463831669
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Concrete/ConcreteStucco02d.mat
+  uploadId: 903528

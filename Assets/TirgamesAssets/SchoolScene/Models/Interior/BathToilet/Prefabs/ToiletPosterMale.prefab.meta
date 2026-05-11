@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 96758bdbc4a29cd40a7572aed98ada0c
+timeCreated: 1483426857
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/BathToilet/Prefabs/ToiletPosterMale.prefab
+  uploadId: 903528

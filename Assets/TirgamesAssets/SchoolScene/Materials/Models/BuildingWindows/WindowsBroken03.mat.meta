@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 789b1cd25a7771b45a5ae5628ac40ff0
+timeCreated: 1477469223
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Models/BuildingWindows/WindowsBroken03.mat
+  uploadId: 903528

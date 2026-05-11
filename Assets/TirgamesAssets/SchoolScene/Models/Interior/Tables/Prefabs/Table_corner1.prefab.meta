@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 24e172a6730635249b90e9e97c76282f
+timeCreated: 1448434567
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Tables/Prefabs/Table_corner1.prefab
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5ca40c9e2df5242439da6648d6e81e3e
+timeCreated: 1448360420
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Plastic/PlasticRed1.mat
+  uploadId: 903528

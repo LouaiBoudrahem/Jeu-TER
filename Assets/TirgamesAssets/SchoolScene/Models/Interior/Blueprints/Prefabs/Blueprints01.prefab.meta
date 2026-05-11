@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 17ae40443a7e6e34bb6c3eefebc45957
+timeCreated: 1464067517
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Blueprints/Prefabs/Blueprints01.prefab
+  uploadId: 903528

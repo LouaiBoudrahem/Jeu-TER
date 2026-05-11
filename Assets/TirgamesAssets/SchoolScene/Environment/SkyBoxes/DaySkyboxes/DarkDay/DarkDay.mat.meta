@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d3a81a48570cd7e40ab3c7da6d863d9a
+timeCreated: 1477564568
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Environment/SkyBoxes/DaySkyboxes/DarkDay/DarkDay.mat
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b8c47b237ac85a24897a0e113de7340a
+timeCreated: 1467459905
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Lights/Prefabs/LightLum01_03On.prefab
+  uploadId: 903528

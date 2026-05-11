@@ -1,0 +1,290 @@
+fileFormatVersion: 2
+guid: 076866146856d284d984ea4efb45cf5a
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_0_basecolor
+    second: {fileID: 2800000, guid: 0d362bf5cd2c76542a470d564a060636, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_10_basecolor
+    second: {fileID: 2800000, guid: b80af83deed647b4f9c45946ed494490, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_11_basecolor
+    second: {fileID: 2800000, guid: e135e71181283c544be1781424f3701f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_12_basecolor
+    second: {fileID: 2800000, guid: bb68b5a3f75339d4ba1f7d92647af64f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_13_basecolor
+    second: {fileID: 2800000, guid: e22624cc7f191d9469232a5200f67847, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_14_basecolor
+    second: {fileID: 2800000, guid: 40af9f5448ab1e54a9d424b81dff0c32, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_15_basecolor
+    second: {fileID: 2800000, guid: 45ee0eed130292f44929dd2062e66038, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_16_basecolor
+    second: {fileID: 2800000, guid: 31f08c069243319499c6d8a5bf68817f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_17_basecolor
+    second: {fileID: 2800000, guid: 0c15b97a776df064784762a161bb5a9a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_18_basecolor
+    second: {fileID: 2800000, guid: 035bd0f3414dd5f4cbcdd63ff1ca5870, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_19_basecolor
+    second: {fileID: 2800000, guid: c9221f679e17c2141a555dddbfeba619, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_1_basecolor
+    second: {fileID: 2800000, guid: c3ed5dba7ee8206458affa06ca5fab49, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_20_basecolor
+    second: {fileID: 2800000, guid: 886bcd0c4b43ae440b9780df2e9a26c8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_21_basecolor
+    second: {fileID: 2800000, guid: d9694e637cca5f24fbe403a4439413ac, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_22_basecolor
+    second: {fileID: 2800000, guid: 7fdbcda8629ac844396c325e9ba21ece, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_23_basecolor
+    second: {fileID: 2800000, guid: e2ea3f040a5324c4eae0ba59e0f72669, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_24_basecolor
+    second: {fileID: 2800000, guid: bde3f72180252e54581a1b820743da9a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_25_basecolor
+    second: {fileID: 2800000, guid: d525d5e9ab2dfc645b1d20910b2edfcc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_26_basecolor
+    second: {fileID: 2800000, guid: 46f2998d1a3786b448325197aab259ed, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_27_basecolor
+    second: {fileID: 2800000, guid: 29eb8c6b171b93a4bb2dc8b75a228258, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_28_basecolor
+    second: {fileID: 2800000, guid: 5ccd79d217e5b834fa740db9684524fb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_29_basecolor
+    second: {fileID: 2800000, guid: 61365f664ebe8ce45849dfa86225b784, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_2_basecolor
+    second: {fileID: 2800000, guid: a67b9be6860003f44a53393760156fad, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_30_basecolor
+    second: {fileID: 2800000, guid: 8addc6bc34623d6409085020ef94a9ca, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_31_basecolor
+    second: {fileID: 2800000, guid: 3e79018484291924fa71b3c5d4d0fea4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_32_basecolor
+    second: {fileID: 2800000, guid: eae13a5ab375dad469ccdeec8e8021f7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_33_basecolor
+    second: {fileID: 2800000, guid: 7f2e3b695c51c504ab0dce45efd5d433, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_34_basecolor
+    second: {fileID: 2800000, guid: eb02453096300e9418166cfeaefb5782, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_35_basecolor
+    second: {fileID: 2800000, guid: a579795d0074c324d8628d375deba173, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_3_basecolor
+    second: {fileID: 2800000, guid: 7c56eeea0c8009f49954cdceabffe2fd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_4_basecolor
+    second: {fileID: 2800000, guid: f1bace01837aba34eaf755b0097c9de1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_5_basecolor
+    second: {fileID: 2800000, guid: 58a4572ab8b3bfc4a90ab4b25aaf5322, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_6_basecolor
+    second: {fileID: 2800000, guid: e52bc96fb2a41ed4481854cef55696e2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_7_basecolor
+    second: {fileID: 2800000, guid: 8019869945f525e4e80af1935b12e8a9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_8_basecolor
+    second: {fileID: 2800000, guid: c234e99c8f944db49b2c52019900dc0a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chest_tripo_part_9_basecolor
+    second: {fileID: 2800000, guid: 1e4205b20d430be4a8db5f53bec781f4, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

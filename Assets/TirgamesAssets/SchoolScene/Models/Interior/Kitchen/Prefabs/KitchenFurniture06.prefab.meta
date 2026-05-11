@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d82036d69bdc3414694f36420570444f
+timeCreated: 1466401701
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Kitchen/Prefabs/KitchenFurniture06.prefab
+  uploadId: 903528

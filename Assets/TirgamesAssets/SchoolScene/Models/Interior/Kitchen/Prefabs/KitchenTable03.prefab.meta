@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9087f8d63d5276746838b4ec3a6f6397
+timeCreated: 1466342200
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Kitchen/Prefabs/KitchenTable03.prefab
+  uploadId: 903528

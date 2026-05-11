@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d97ca9503c2f64b4ba273934d31041a6
+timeCreated: 1466326240
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Tile/TileWhite03.mat
+  uploadId: 903528

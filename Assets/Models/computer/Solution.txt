@@ -1,0 +1,9 @@
+filtered = []
+
+for n in data:
+    if n % 3 == 0:
+        filtered.append(n * 2)
+
+checksum = sum(filtered)
+
+print(checksum)

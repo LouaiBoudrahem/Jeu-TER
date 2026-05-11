@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5328048c84913de41999c36c7adc5816
+timeCreated: 1443248011
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Metall/MetallGray1.mat
+  uploadId: 903528
