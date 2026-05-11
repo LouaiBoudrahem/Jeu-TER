@@ -188,5 +188,12 @@ public class PlayerCharacter : MonoBehaviour, ICharacterController
         return requestedMovement.sqrMagnitude > 0.001f;
     }
 
+    public float GetNoiseLevel()
+    {
+        if (requestedCrouch) return 0.3f; 
+        if (requestedMovement.magnitude > 0.1f) return 1f;
+        return 0f;
+    }
+
     public Transform GetCameraTarget() => cameraTarget;
 }
