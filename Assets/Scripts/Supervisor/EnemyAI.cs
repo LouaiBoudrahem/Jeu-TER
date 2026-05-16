@@ -25,9 +25,27 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private string lookStateNameA = "Looking";
     [SerializeField] private string lookStateNameB = "Looking2";
 
+    [Header("Catch Sequence")]
+    [SerializeField] private AudioSource catchAudioSource;
+    [SerializeField] private GameObject catchCinemachineCamera;
+    [SerializeField] private Transform playerSpawnPoint;
+    [SerializeField] private CanvasGroup fadeCanvasGroup;
+    [SerializeField] private float cameraLookAtDuration = 0.5f;
+    [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private float respawnWaitDuration = 1f;
+    [SerializeField] private float catchTeleportDistance = 1f;
+
+    [Header("Chase Audio")]
+    [SerializeField] private AudioSource chaseAudioSource;
+
+    [Header("Patrol Proximity Audio")]
+    [SerializeField] private AudioSource patrolProximityAudioSource;
+    [SerializeField] private float patrolProximityDistance = 3f;
+
     [Header("References")]
     [SerializeField] private LayerMask obstacleMask;  
     [SerializeField] private PlayerCharacter playerCharacter;
+    private Player playerScript;
 
     private UnityEngine.AI.NavMeshAgent agent;
     private EnemyState state = EnemyState.Patrol;
@@ -46,6 +64,14 @@ public class EnemyAI : MonoBehaviour
     private int catchStateHash;
     private int lookStateHashA;
     private int lookStateHashB;
+    private bool catchSequenceStarted = false;
+    private bool catchRecoveryActive = false;
+    private float catchRecoveryUntil = 0f;
+    private bool chaseAudioPlaying = false;
+    private bool patrolProximityAudioPlaying = false;
+    private int patrolWaitLookStateHash;
+    private string patrolWaitLookStateName = string.Empty;
+    private bool useLookStateAOnNextWait = true;
 
     void Start()
     {
@@ -56,10 +82,19 @@ public class EnemyAI : MonoBehaviour
         CacheAnimationHashes();
 
         playerCharacter = playerCharacter != null ? playerCharacter : FindObjectOfType<PlayerCharacter>();
+        playerScript = playerCharacter != null ? playerCharacter.GetComponent<Player>() : null;
+        if (playerScript == null)
+            playerScript = FindObjectOfType<Player>();
         player = playerCharacter != null ? playerCharacter.transform : null;
 
         if (agent != null)
             agent.isStopped = false;
+
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.alpha = 0f;
+            fadeCanvasGroup.gameObject.SetActive(false);
+        }
 
         GoToNextPatrolPoint();
     }
@@ -69,6 +104,9 @@ public class EnemyAI : MonoBehaviour
         if (agent == null || player == null)
             return;
 
+        if (catchRecoveryActive && Time.time >= catchRecoveryUntil)
+            catchRecoveryActive = false;
+
         switch (state)
         {
             case EnemyState.Patrol:     UpdatePatrol();     break;
@@ -77,7 +115,7 @@ public class EnemyAI : MonoBehaviour
             case EnemyState.Catch:      UpdateCatch();      break;
         }
 
-        if (state != EnemyState.Catch)
+        if (state != EnemyState.Catch && !catchRecoveryActive)
             CheckPerception();
     }
 
@@ -141,6 +179,7 @@ public class EnemyAI : MonoBehaviour
         agent.isStopped = false;
         agent.speed = chaseSpeed;
         PlayAnimation(runStateHash, runStateName);
+        PlayChaseAudio();
         agent.SetDestination(player.position);
 
         if (!CanSeePlayer())
@@ -150,13 +189,25 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        if (Vector3.Distance(transform.position, player.position) < catchRange)
+        float sqrDist = (transform.position - player.position).sqrMagnitude;
+        float catchSqr = catchRange * catchRange;
+        bool closeByPosition = sqrDist <= catchSqr + 0.01f;
+        bool closeByPath = (agent != null && !agent.pathPending && agent.remainingDistance <= catchRange + 0.01f);
+
+        if (closeByPosition || closeByPath)
             SetState(EnemyState.Catch);
     }
 
     private void UpdateCatch()
     {
         agent.isStopped = true;
+        StopChaseAudio();
+
+        if (!catchSequenceStarted)
+        {
+            catchSequenceStarted = true;
+            StartCoroutine(DoCatchSequence());
+        }
     }
 
     private void SetState(EnemyState newState)
@@ -169,6 +220,7 @@ public class EnemyAI : MonoBehaviour
         if (state == EnemyState.Catch)
         {
             agent.isStopped = true;
+            StopChaseAudio();
             PlayAnimation(catchStateHash, catchStateName);
             Debug.Log("Player caught!");
             return;
@@ -176,12 +228,20 @@ public class EnemyAI : MonoBehaviour
 
         agent.isStopped = false;
 
+        if (state != EnemyState.Chase)
+            StopChaseAudio();
+
+        if (state != EnemyState.Patrol)
+            StopPatrolProximityAudio();
+
         if (state == EnemyState.Patrol)
         {
             investigateTimer = 0f;
             isWaiting = false;
             waitTimer = 0f;
             currentLookAnimation = -1;
+            patrolWaitLookStateHash = 0;
+            patrolWaitLookStateName = string.Empty;
         }
 
         if (state == EnemyState.Investigate)
@@ -214,14 +274,26 @@ public class EnemyAI : MonoBehaviour
     {
         agent.speed = patrolSpeed;
 
+        // Patrol proximity audio: play only while patrolling and player is within distance
+        if (player != null && patrolProximityAudioSource != null)
+        {
+            float pdist = Vector3.Distance(transform.position, player.position);
+            if (pdist <= patrolProximityDistance && !patrolProximityAudioPlaying && !catchRecoveryActive)
+            {
+                PlayPatrolProximityAudio();
+            }
+            else if (pdist > patrolProximityDistance && patrolProximityAudioPlaying)
+            {
+                StopPatrolProximityAudio();
+            }
+        }
+
         if (isWaiting)
         {
             waitTimer += Time.deltaTime;
 
             if (waitTimer >= waitAtPointDuration)
                 GoToNextPatrolPoint();
-            else
-                PlayLookAroundAnimation();
 
             return;
         }
@@ -230,14 +302,39 @@ public class EnemyAI : MonoBehaviour
         {
             isWaiting = true;
             waitTimer = 0f;
-            PlayLookAroundAnimation();
+            StartPatrolWaitLookAnimation();
             return;
         }
 
         PlayAnimation(walkStateHash, walkStateName);
     }
 
-    private void PlayLookAroundAnimation()
+    private void PlayPatrolProximityAudio()
+    {
+        if (patrolProximityAudioSource == null)
+            return;
+
+        patrolProximityAudioSource.loop = true;
+
+        if (patrolProximityAudioPlaying)
+            return;
+
+        patrolProximityAudioSource.Play();
+        patrolProximityAudioPlaying = true;
+    }
+
+    private void StopPatrolProximityAudio()
+    {
+        if (patrolProximityAudioSource == null)
+            return;
+
+        if (patrolProximityAudioSource.isPlaying)
+            patrolProximityAudioSource.Stop();
+
+        patrolProximityAudioPlaying = false;
+    }
+
+    private void StartPatrolWaitLookAnimation()
     {
         if (string.IsNullOrWhiteSpace(lookStateNameA) && string.IsNullOrWhiteSpace(lookStateNameB))
             return;
@@ -245,16 +342,21 @@ public class EnemyAI : MonoBehaviour
         if (!string.IsNullOrWhiteSpace(lookStateNameA) && !string.IsNullOrWhiteSpace(lookStateNameB))
         {
             if (currentLookAnimation == -1)
-                currentLookAnimation = Random.Range(0, 2);
+                currentLookAnimation = useLookStateAOnNextWait ? 0 : 1;
             else
                 currentLookAnimation = 1 - currentLookAnimation;
 
-            PlayAnimation(currentLookAnimation == 0 ? lookStateHashA : lookStateHashB, currentLookAnimation == 0 ? lookStateNameA : lookStateNameB);
+            patrolWaitLookStateHash = currentLookAnimation == 0 ? lookStateHashA : lookStateHashB;
+            patrolWaitLookStateName = currentLookAnimation == 0 ? lookStateNameA : lookStateNameB;
+            useLookStateAOnNextWait = !useLookStateAOnNextWait;
+            PlayAnimation(patrolWaitLookStateHash, patrolWaitLookStateName);
             return;
         }
 
         bool useA = !string.IsNullOrWhiteSpace(lookStateNameA);
-        PlayAnimation(useA ? lookStateHashA : lookStateHashB, useA ? lookStateNameA : lookStateNameB);
+        patrolWaitLookStateHash = useA ? lookStateHashA : lookStateHashB;
+        patrolWaitLookStateName = useA ? lookStateNameA : lookStateNameB;
+        PlayAnimation(patrolWaitLookStateHash, patrolWaitLookStateName);
     }
 
     private void PlayAnimation(int stateHash, string stateName)
@@ -264,6 +366,31 @@ public class EnemyAI : MonoBehaviour
 
         animator.CrossFadeInFixedTime(stateHash, crossFadeDuration);
         currentAnimationState = stateName;
+    }
+
+    private void PlayChaseAudio()
+    {
+        if (chaseAudioSource == null)
+            return;
+
+        chaseAudioSource.loop = true;
+
+        if (chaseAudioPlaying)
+            return;
+
+        chaseAudioSource.Play();
+        chaseAudioPlaying = true;
+    }
+
+    private void StopChaseAudio()
+    {
+        if (chaseAudioSource == null)
+            return;
+
+        if (chaseAudioSource.isPlaying)
+            chaseAudioSource.Stop();
+
+        chaseAudioPlaying = false;
     }
 
     private void CacheAnimationHashes()
@@ -278,6 +405,113 @@ public class EnemyAI : MonoBehaviour
     private void OnValidate()
     {
         CacheAnimationHashes();
+    }
+
+    private System.Collections.IEnumerator DoCatchSequence()
+    {
+        if (playerCharacter == null || player == null || playerScript == null)
+            yield break;
+
+        catchRecoveryActive = true;
+        catchRecoveryUntil = Time.time + cameraLookAtDuration + fadeDuration + respawnWaitDuration + fadeDuration + 0.25f;
+
+        playerScript.SetInputLocked(true);
+
+        if (fadeCanvasGroup != null)
+        {
+            fadeCanvasGroup.gameObject.SetActive(true);
+            fadeCanvasGroup.alpha = 0f;
+            fadeCanvasGroup.blocksRaycasts = true;
+            fadeCanvasGroup.interactable = true;
+        }
+
+        if (catchAudioSource != null)
+        {
+            catchAudioSource.loop = false;
+            catchAudioSource.Stop();
+            catchAudioSource.Play();
+        }
+
+        Vector3 dir = transform.position - player.position;
+        dir.y = 0f;
+        if (dir.sqrMagnitude < 0.0001f)
+        {
+            dir = playerCharacter != null ? playerCharacter.transform.forward : Vector3.forward;
+        }
+        dir.Normalize();
+        Vector3 targetPos = player.position + dir * catchTeleportDistance;
+        targetPos.y = player.position.y;
+
+        if (agent != null)
+        {
+            agent.Warp(targetPos);
+        }
+        else
+        {
+            transform.position = targetPos;
+        }
+
+        if (playerScript != null)
+        {
+            playerScript.BeginCinemachineCameraTransition(catchCinemachineCamera);
+        }
+
+        yield return new WaitForSeconds(cameraLookAtDuration);
+
+        if (fadeCanvasGroup != null)
+        {
+            float elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                fadeCanvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / fadeDuration);
+                yield return null;
+            }
+            fadeCanvasGroup.alpha = 1f;
+        }
+
+        PlayAnimation(catchStateHash, catchStateName);
+        SetState(EnemyState.Patrol);
+        agent.isStopped = false;
+
+        yield return new WaitForSeconds(respawnWaitDuration);
+
+        if (playerScript != null)
+        {
+            if (playerSpawnPoint != null)
+            {
+                playerScript.RespawnAt(playerSpawnPoint);
+            }
+            else
+            {
+                Debug.LogWarning("EnemyAI: Player spawn point not assigned!");
+            }
+
+            playerScript.EndCinemachineCameraTransition();
+        }
+
+        if (fadeCanvasGroup != null)
+        {
+            float elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                fadeCanvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+                yield return null;
+            }
+            fadeCanvasGroup.alpha = 0f;
+            fadeCanvasGroup.blocksRaycasts = false;
+            fadeCanvasGroup.interactable = false;
+            fadeCanvasGroup.gameObject.SetActive(false);
+        }
+
+        playerScript.SetInputLocked(false);
+        GoToNextPatrolPoint();
+        catchSequenceStarted = false;
+        StopChaseAudio();
+
+        if (Time.time >= catchRecoveryUntil)
+            catchRecoveryActive = false;
     }
 
     private void OnDrawGizmos()

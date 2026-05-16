@@ -26,6 +26,7 @@ public class PlayerCharacter : MonoBehaviour, ICharacterController
     [SerializeField] private float gravity     = -9.81f;
     [SerializeField] private float crouchHeight = 1f;
     [SerializeField] private float crouchYOffset = -0.5f;
+    [SerializeField, Range(0.1f, 1f)] private float crouchSpeedMultiplier = 0.5f;
     [SerializeField] private Transform crouchTarget;
     [SerializeField] private float airSpeed = 15f;
     [SerializeField] private float airAcceleration = 70f;
@@ -48,12 +49,37 @@ public class PlayerCharacter : MonoBehaviour, ICharacterController
         center = motor.Capsule.center;
         radius = motor.Capsule.radius;
         crouchTarget.localPosition = cameraTarget.localPosition + new Vector3(0f, crouchYOffset, 0f);
-        cameraTargetInitialPosition = cameraTarget;
+        if (cameraTargetInitialPosition == null)
+            cameraTargetInitialPosition = cameraTarget;
     }
 
     public void SetMovementLocked(bool locked)
     {
         movementLocked = locked;
+    }
+
+    public void ResetInputState()
+    {
+        requestedMovement = Vector3.zero;
+        requestedJump = false;
+        requestedCrouch = false;
+        requestedInteract = false;
+        requestedRotation = transform.rotation;
+    }
+
+    public void ResetAfterRespawn(Vector3 position, Quaternion rotation)
+    {
+        ResetInputState();
+
+        if (motor != null)
+        {
+            motor.SetPositionAndRotation(position, rotation);
+            motor.ForceUnground(time: 0f);
+            motor.SetCapsuleDimensions(radius, height, center.y);
+        }
+
+        cameraTarget = cameraTargetInitialPosition;
+        requestedCrouch = false;
     }
 
     public void UpdateInput(CharacterInput input)
@@ -124,7 +150,8 @@ public class PlayerCharacter : MonoBehaviour, ICharacterController
         {
             var groundedMovement = motor.GetDirectionTangentToSurface(
                 requestedMovement, motor.GroundingStatus.GroundNormal) * requestedMovement.magnitude;
-            currentVelocity = groundedMovement * walkSpeed;
+            float speed = walkSpeed * (requestedCrouch ? crouchSpeedMultiplier : 1f);
+            currentVelocity = groundedMovement * speed;
         }
         else
         {
@@ -193,6 +220,11 @@ public class PlayerCharacter : MonoBehaviour, ICharacterController
         if (requestedCrouch) return 0.3f; 
         if (requestedMovement.magnitude > 0.1f) return 1f;
         return 0f;
+    }
+
+    public bool IsCrouching()
+    {
+        return requestedCrouch;
     }
 
     public Transform GetCameraTarget() => cameraTarget;

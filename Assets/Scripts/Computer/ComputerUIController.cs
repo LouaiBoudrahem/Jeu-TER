@@ -19,9 +19,9 @@ public class ComputerUIController : MonoBehaviour
 
     [Header("UI Refs")]
     [SerializeField] private GameObject computerRootPanel;
-    [SerializeField] private Transform contentArea; // parent for instantiated entry buttons
-    [SerializeField] private GameObject explorerPanel; // the whole panel
-    [SerializeField] private GameObject previewPanel; // panel containing file preview UI
+    [SerializeField] private Transform contentArea; 
+    [SerializeField] private GameObject explorerPanel; 
+    [SerializeField] private GameObject previewPanel; 
     [SerializeField] private TMP_Text previewText;
     [SerializeField] private TMP_Text successText;
     [SerializeField] private QuizController previewQuizController;
@@ -40,6 +40,12 @@ public class ComputerUIController : MonoBehaviour
     {
         if (explorerPanel != null)
             explorerPanel.SetActive(false);
+
+        if (successText != null)
+        {
+            successText.text = string.Empty;
+            successText.gameObject.SetActive(false);
+        }
 
         if (previewQuizController == null && previewPanel != null)
             previewQuizController = previewPanel.GetComponentInChildren<QuizController>(true);
@@ -66,6 +72,14 @@ public class ComputerUIController : MonoBehaviour
 
         if (backButton != null)
             backButton.onClick.RemoveListener(OnBackPressed);
+    }
+
+    private void OnDisable()
+    {
+        ClearContent();
+        HidePreview();
+        history.Clear();
+        currentFolder = null;
     }
 
     private void Update()
@@ -128,10 +142,7 @@ public class ComputerUIController : MonoBehaviour
             return;
         }
 
-        if (explorerPanel != null && explorerPanel.activeSelf)
-        {
-            CloseExplorer();
-        }
+        HideComputerUIForExit();
 
         Player player = FindObjectOfType<Player>();
         if (player != null)
@@ -148,6 +159,9 @@ public class ComputerUIController : MonoBehaviour
 
     public void OpenExplorer()
     {
+        if (computerRootPanel != null)
+            computerRootPanel.SetActive(true);
+
         if (explorerPanel != null)
             explorerPanel.SetActive(true);
 
@@ -162,10 +176,64 @@ public class ComputerUIController : MonoBehaviour
         if (explorerPanel != null)
             explorerPanel.SetActive(false);
 
+        if (successText != null)
+        {
+            successText.text = string.Empty;
+            successText.gameObject.SetActive(false);
+        }
+
         ClearContent();
         HidePreview();
         history.Clear();
         currentFolder = null;
+    }
+
+    public void HideComputerUIForExit()
+    {
+        if (computerRootPanel != null)
+            computerRootPanel.SetActive(false);
+        else
+            SetCanvasParentsActive(false);
+
+        if (explorerPanel != null)
+            explorerPanel.SetActive(false);
+
+        if (successText != null)
+        {
+            successText.text = string.Empty;
+            successText.gameObject.SetActive(false);
+        }
+
+        ClearContent();
+        HidePreview();
+        history.Clear();
+        currentFolder = null;
+    }
+
+    private void SetCanvasParentsActive(bool isActive)
+    {
+        SetParentCanvasActive(explorerPanel, isActive);
+        SetParentCanvasActive(previewPanel, isActive);
+        SetParentCanvasActive(previewText != null ? previewText.gameObject : null, isActive);
+        SetParentCanvasActive(successText != null ? successText.gameObject : null, isActive);
+        SetParentCanvasActive(previewQuizController != null ? previewQuizController.gameObject : null, isActive);
+        SetParentCanvasActive(explorerCloseButton != null ? explorerCloseButton.gameObject : null, isActive);
+        SetParentCanvasActive(previewCloseButton != null ? previewCloseButton.gameObject : null, isActive);
+        SetParentCanvasActive(backButton != null ? backButton.gameObject : null, isActive);
+    }
+
+    private static void SetParentCanvasActive(GameObject source, bool isActive)
+    {
+        if (source == null)
+        {
+            return;
+        }
+
+        Canvas parentCanvas = source.GetComponentInParent<Canvas>(true);
+        if (parentCanvas != null)
+        {
+            parentCanvas.gameObject.SetActive(isActive);
+        }
     }
 
     private void RenderCurrent()

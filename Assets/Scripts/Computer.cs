@@ -58,16 +58,62 @@ public class Computer : MonoBehaviour, IInteractable
 
         if (!SceneManager.GetSceneByName(minigameSceneName).isLoaded)
         {
+            SceneManager.sceneLoaded -= HandleMinigameSceneLoaded;
+            SceneManager.sceneLoaded += HandleMinigameSceneLoaded;
             SceneManager.LoadScene(minigameSceneName, LoadSceneMode.Additive);
         }
         else
         {
+            ActivateSceneRoots(SceneManager.GetSceneByName(minigameSceneName));
+            OpenComputerExplorerUI();
+
             QuizController quizController = FindObjectOfType<QuizController>();
             if (quizController != null)
             {
                 quizController.SetQuestion(selectedQuestion);
             }
         }
+    }
+
+    private void HandleMinigameSceneLoaded(Scene loadedScene, LoadSceneMode loadMode)
+    {
+        if (!string.Equals(loadedScene.name, minigameSceneName, System.StringComparison.Ordinal))
+        {
+            return;
+        }
+
+        SceneManager.sceneLoaded -= HandleMinigameSceneLoaded;
+        OpenComputerExplorerUI();
+    }
+
+    private void OpenComputerExplorerUI()
+    {
+        ComputerUIController uiController = FindObjectOfType<ComputerUIController>(true);
+        if (uiController != null)
+        {
+            uiController.OpenExplorer();
+        }
+    }
+
+    private static void ActivateSceneRoots(Scene scene)
+    {
+        if (!scene.IsValid() || !scene.isLoaded)
+        {
+            return;
+        }
+
+        foreach (GameObject rootObject in scene.GetRootGameObjects())
+        {
+            if (rootObject != null)
+            {
+                rootObject.SetActive(true);
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= HandleMinigameSceneLoaded;
     }
 
     private bool HasRequiredItem()

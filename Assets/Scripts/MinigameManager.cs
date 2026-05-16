@@ -33,6 +33,8 @@ public class MinigameManager : MonoBehaviour
 
     public void ExitMinigame()
     {
+        ForceCloseComputerUI();
+
         Player player = FindObjectOfType<Player>();
         if (player != null)
         {
@@ -45,13 +47,31 @@ public class MinigameManager : MonoBehaviour
 
         if (minigameScene.IsValid() && minigameScene.isLoaded)
         {
-            foreach (GameObject rootObject in minigameScene.GetRootGameObjects())
-            {
-                rootObject.SetActive(false);
-            }
+            SceneManager.UnloadSceneAsync(minigameScene.name);
         }
 
-        SceneManager.UnloadSceneAsync(minigameScene.name);
         activeMinigameSceneName = null;
+
+        ForceCloseComputerUI();
     }
+
+    private void ForceCloseComputerUI()
+    {
+        ComputerUIController[] controllers = Resources.FindObjectsOfTypeAll<ComputerUIController>();
+        if (controllers == null)
+        {
+            return;
+        }
+
+        foreach (ComputerUIController controller in controllers)
+        {
+            if (controller == null)
+            {
+                continue;
+            }
+
+            controller.HideComputerUIForExit();
+        }
+    }
+
 }

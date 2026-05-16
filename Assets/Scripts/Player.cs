@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
     private Component activeVirtualCameraComponent;
     private int activeVirtualCameraOriginalPriority;
     private AudioSource activeWalkingAudioSource;
+    private Rigidbody playerRigidbody;
+    private GameObject activeCinemachineCamera;
+    private GameObject fallbackVirtualCamera;
+    private Coroutine cameraTransitionCoroutine;
     private readonly List<Behaviour> temporarilyDisabledInteractionCameras = new List<Behaviour>();
 
     void Start()
@@ -62,7 +66,7 @@ public class Player : MonoBehaviour
     private void ValidateColliderSetup()
     {
         Collider playerCollider = GetComponent<Collider>();
-        Rigidbody playerRigidbody = GetComponent<Rigidbody>();
+        playerRigidbody = GetComponent<Rigidbody>();
 
         if (playerCollider == null)
             Debug.LogWarning("Player: No Collider found. Trigger detection will not work.");
@@ -116,7 +120,7 @@ public class Player : MonoBehaviour
             Crouch   = playerInput.Crouch.IsPressed()
         });
 
-        UpdateWalkingAudio(playerCharacter.IsWalking());
+        UpdateWalkingAudio(playerCharacter.IsWalking() && !playerCharacter.IsCrouching());
 
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         IInteractable interactable = playerCharacter.PlayerRaycast(ray, out raycastHitThisFrame);
@@ -149,33 +153,10 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (activeComputerCamera != null && activeComputerCamera != cinemachineCamera)
-        {
-            activeComputerCamera.SetActive(false);
-            RestorePreviousVirtualCameraPriority();
-        }
-
         computerInteractionLocked = true;
         UpdateInputLockState();
 
-        bool hadBrain = cinemachineBrain != null;
-        if (hadBrain)
-        {
-            cinemachineBrain.enabled = false;
-        }
-
-        playerMainCamera.enabled = false;
-        cinemachineOutputCamera.enabled = true;
-
-        activeComputerCamera = cinemachineCamera;
-        cinemachineCamera.SetActive(true);
-        PromoteVirtualCameraPriority(cinemachineCamera);
-        IsolateInteractionCamera(cinemachineCamera);
-
-        if (hadBrain)
-        {
-            cinemachineBrain.enabled = true;
-        }
+        BeginCinemachineCameraTransition(cinemachineCamera);
 
         if (interactionUI != null)
             interactionUI.SetActive(true);
@@ -183,17 +164,7 @@ public class Player : MonoBehaviour
 
     public void EndComputerInteraction()
     {
-        if (activeComputerCamera != null)
-        {
-            activeComputerCamera.SetActive(false);
-            activeComputerCamera = null;
-        }
-
-        RestorePreviousVirtualCameraPriority();
-        RestoreIsolatedInteractionCameras();
-
-        playerMainCamera.enabled = true;
-        cinemachineOutputCamera.enabled = false;
+        EndCinemachineCameraTransition();
 
         computerInteractionLocked = false;
         UpdateInputLockState();
@@ -287,6 +258,161 @@ public class Player : MonoBehaviour
     {
         computerInteractionLocked = locked;
         UpdateInputLockState();
+    }
+
+    public void BeginCinemachineCameraTransition(GameObject cinemachineCamera)
+    {
+        if (cinemachineCamera == null)
+            return;
+        if (activeCinemachineCamera != null && activeCinemachineCamera != cinemachineCamera)
+        {
+            if (cameraTransitionCoroutine != null)
+            {
+                StopCoroutine(cameraTransitionCoroutine);
+                cameraTransitionCoroutine = null;
+            }
+
+            RestorePreviousVirtualCameraPriority();
+            activeCinemachineCamera.SetActive(false);
+
+            if (playerMainCamera != null && cinemachineCamera != null)
+            {
+                Transform t = cinemachineCamera.transform;
+                playerMainCamera.transform.SetPositionAndRotation(t.position, t.rotation);
+                playerMainCamera.enabled = true;
+                if (cinemachineOutputCamera != null)
+                    cinemachineOutputCamera.enabled = false;
+            }
+
+            activeCinemachineCamera = cinemachineCamera;
+            cinemachineCamera.SetActive(true);
+            IsolateInteractionCamera(cinemachineCamera);
+
+            return;
+        }
+
+        if (cameraTransitionCoroutine != null)
+        {
+            StopCoroutine(cameraTransitionCoroutine);
+            cameraTransitionCoroutine = null;
+        }
+
+        if (cinemachineOutputCamera != null)
+            cinemachineOutputCamera.enabled = true;
+
+        if (playerMainCamera != null)
+            playerMainCamera.enabled = false;
+
+        activeCinemachineCamera = cinemachineCamera;
+        cinemachineCamera.SetActive(true);
+        PromoteVirtualCameraPriority(cinemachineCamera);
+        IsolateInteractionCamera(cinemachineCamera);
+    }
+
+    public void EndCinemachineCameraTransition()
+    {
+        if (activeCinemachineCamera != null)
+        {
+            RestorePreviousVirtualCameraPriority();
+            activeCinemachineCamera.SetActive(false);
+            activeCinemachineCamera = null;
+        }
+
+        RestoreIsolatedInteractionCameras();
+
+        if (playerMainCamera != null)
+            playerMainCamera.enabled = true;
+
+        if (cinemachineOutputCamera != null)
+            cinemachineOutputCamera.enabled = false;
+
+        if (fallbackVirtualCamera != null)
+        {
+            Destroy(fallbackVirtualCamera);
+            fallbackVirtualCamera = null;
+        }
+
+        if (cameraTransitionCoroutine != null)
+        {
+            StopCoroutine(cameraTransitionCoroutine);
+            cameraTransitionCoroutine = null;
+        }
+    }
+
+    private IEnumerator WaitForCinemachineBlendThenDisable(GameObject cinemachineCamera, bool restorePriority)
+    {
+        if (restorePriority)
+        {
+            RestorePreviousVirtualCameraPriority();
+        }
+
+        if (cinemachineBrain != null)
+        {
+            yield return null;
+            while (cinemachineBrain.IsBlending)
+                yield return null;
+        }
+
+            cinemachineCamera.SetActive(false);
+
+        bool wasActive = activeCinemachineCamera == cinemachineCamera;
+        if (wasActive)
+            activeCinemachineCamera = null;
+
+        if (wasActive)
+        {
+            RestoreIsolatedInteractionCameras();
+
+            if (playerMainCamera != null)
+                playerMainCamera.enabled = true;
+
+            if (cinemachineOutputCamera != null)
+                cinemachineOutputCamera.enabled = false;
+        }
+
+        if (fallbackVirtualCamera != null)
+        {
+            Destroy(fallbackVirtualCamera.gameObject);
+            fallbackVirtualCamera = null;
+        }
+
+        cameraTransitionCoroutine = null;
+    }
+
+    public void RespawnAt(Transform spawnPoint)
+    {
+        if (playerCharacter == null)
+        {
+            Debug.LogWarning("Player.RespawnAt: playerCharacter is not assigned.");
+            return;
+        }
+
+        if (spawnPoint == null)
+        {
+            Debug.LogWarning("Player.RespawnAt: spawnPoint is null.");
+            return;
+        }
+
+        if (playerRigidbody != null)
+        {
+            playerRigidbody.linearVelocity = Vector3.zero;
+            playerRigidbody.angularVelocity = Vector3.zero;
+            playerRigidbody.position = spawnPoint.position;
+            playerRigidbody.rotation = spawnPoint.rotation;
+        }
+        else
+        {
+            transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+        }
+
+        Physics.SyncTransforms();
+        playerCharacter.ResetAfterRespawn(spawnPoint.position, spawnPoint.rotation);
+
+        if (playerCamera != null)
+        {
+            playerCamera.ResetAfterRespawn(playerCharacter.GetCameraTarget());
+            playerCamera.UpdatePosition(playerCharacter.GetCameraTarget());
+        }
     }
 
     private void UpdateInputLockState()
@@ -415,7 +541,10 @@ public class Player : MonoBehaviour
     {
         if (playerCamera == null) return;
         Gizmos.color = raycastHitThisFrame ? Color.green : Color.red;
-        Gizmos.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 2f);
+        //Physics.SphereCastAll(ray, interactionRadius, 2f, ~0, QueryTriggerInteraction.Ignore);
+        //Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        Gizmos.DrawLine(playerCamera.transform.position, playerCamera.transform.position + playerCamera.transform.forward * 2f);
+        Gizmos.DrawWireSphere(playerCamera.transform.position + playerCamera.transform.forward * 2f, 0.5f);
     }
 
     private void PromoteVirtualCameraPriority(GameObject cameraObject)

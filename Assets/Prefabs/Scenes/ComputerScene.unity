@@ -794,8 +794,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1793244234}
   m_HandleRect: {fileID: 1793244233}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999782
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1305,8 +1305,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -17.1035, y: 4.30188}
-  m_SizeDelta: {x: -440.8617, y: -46.2226}
+  m_AnchoredPosition: {x: -17.103516, y: 13.265015}
+  m_SizeDelta: {x: -440.862, y: -64.149}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920168419
 MonoBehaviour:
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1576,7 +1576,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1846411469}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.999978
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1928,7 +1928,6 @@ MonoBehaviour:
   folderButtonPrefab: {fileID: 6758255926702003990, guid: a8fd3048f595dfa448ff089e06508f80, type: 3}
   fileButtonPrefab: {fileID: 5020546138856615669, guid: c482f6d7371d15442bd2ab79d7cbe744, type: 3}
   computerRootPanel: {fileID: 0}
-  backgroundPanel: {fileID: 0}
   contentArea: {fileID: 1477114052}
   explorerPanel: {fileID: 1269081365}
   previewPanel: {fileID: 1751340132}
@@ -2857,7 +2856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -399.55573, y: 131.47476}
+  m_AnchoredPosition: {x: -399.5551, y: 131.475}
   m_SizeDelta: {x: 799.11, y: 262.95}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1477114053

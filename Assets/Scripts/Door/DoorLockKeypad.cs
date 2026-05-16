@@ -21,6 +21,20 @@ public class DoorLockKeypad : MonoBehaviour
     [SerializeField] private string successMessage = "Access granted";
     [SerializeField] private string failureMessage = "Incorrect code";
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip buttonClickClip;
+    [SerializeField] private AudioClip wrongCodeClip;
+    [SerializeField] private AudioClip correctCodeClipA;
+    [SerializeField] private AudioClip correctCodeClipB;
+    [Header("Indicators")]
+    [SerializeField] private CanvasGroup correctIndicator;
+    [SerializeField] private CanvasGroup wrongIndicator;
+    [SerializeField, Min(1)] private int indicatorFlashCount = 2;
+    [SerializeField, Min(0f)] private float indicatorFlashDuration = 0.25f;
+    [SerializeField, Min(0f)] private float indicatorFadeTime = 0.08f;
+    private Coroutine indicatorRoutine;
+
     [Header("Door")]
     [SerializeField] private DoorController doorController;
     [SerializeField, Min(0f)] private float successCloseDelay = 0.5f;
@@ -36,6 +50,28 @@ public class DoorLockKeypad : MonoBehaviour
     {
         RefreshDisplay();
         SetFeedback(idleMessage, false);
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        if (correctIndicator != null)
+        {
+            correctIndicator.alpha = 0f;
+            correctIndicator.gameObject.SetActive(false);
+        }
+
+        if (wrongIndicator != null)
+        {
+            wrongIndicator.alpha = 0f;
+            wrongIndicator.gameObject.SetActive(false);
+        }
     }
 
     private void OnDisable()
@@ -97,6 +133,11 @@ public class DoorLockKeypad : MonoBehaviour
         enteredCode.Append(symbol[0]);
         RefreshDisplay();
 
+        if (buttonClickClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(buttonClickClip);
+        }
+
         if (enteredCode.Length >= codeLength)
         {
             SubmitCode();
@@ -147,6 +188,22 @@ public class DoorLockKeypad : MonoBehaviour
             RefreshDisplay();
             SetFeedback(failureMessage, false);
 
+            if (wrongCodeClip != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(wrongCodeClip);
+            }
+
+            if (indicatorRoutine != null)
+            {
+                StopCoroutine(indicatorRoutine);
+                indicatorRoutine = null;
+            }
+
+            if (wrongIndicator != null)
+            {
+                indicatorRoutine = StartCoroutine(FlashCanvasGroup(wrongIndicator));
+            }
+
             if (failureFeedbackDuration > 0f)
             {
                 feedbackRoutine = StartCoroutine(RestoreIdleFeedbackRoutine());
@@ -162,6 +219,29 @@ public class DoorLockKeypad : MonoBehaviour
     {
         isSubmitting = true;
         SetFeedback(successMessage, true);
+
+        if (indicatorRoutine != null)
+        {
+            StopCoroutine(indicatorRoutine);
+            indicatorRoutine = null;
+        }
+
+        if (correctIndicator != null)
+        {
+            indicatorRoutine = StartCoroutine(FlashCanvasGroup(correctIndicator));
+        }
+
+        if (correctCodeClipA != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(correctCodeClipA);
+            yield return new WaitForSeconds(Mathf.Max(0.05f, correctCodeClipA.length));
+        }
+
+        if (correctCodeClipB != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(correctCodeClipB);
+            yield return new WaitForSeconds(Mathf.Max(0.05f, correctCodeClipB.length));
+        }
 
         if (doorController != null)
         {
@@ -182,6 +262,36 @@ public class DoorLockKeypad : MonoBehaviour
         yield return new WaitForSeconds(failureFeedbackDuration);
         SetFeedback(idleMessage, false);
         feedbackRoutine = null;
+    }
+
+    private IEnumerator FlashCanvasGroup(CanvasGroup cg)
+    {
+        if (cg == null) yield break;
+        cg.alpha = 0f;
+        cg.gameObject.SetActive(true);
+        for (int i = 0; i < indicatorFlashCount; i++)
+        {
+            float t = 0f;
+            while (t < indicatorFadeTime)
+            {
+                t += Time.deltaTime;
+                cg.alpha = Mathf.Lerp(0f, 1f, t / Mathf.Max(0.0001f, indicatorFadeTime));
+                yield return null;
+            }
+            cg.alpha = 1f;
+            yield return new WaitForSeconds(indicatorFlashDuration);
+            t = 0f;
+            while (t < indicatorFadeTime)
+            {
+                t += Time.deltaTime;
+                cg.alpha = Mathf.Lerp(1f, 0f, t / Mathf.Max(0.0001f, indicatorFadeTime));
+                yield return null;
+            }
+            cg.alpha = 0f;
+            yield return new WaitForSeconds(0.05f);
+        }
+        cg.gameObject.SetActive(false);
+        indicatorRoutine = null;
     }
 
     private void RefreshDisplay()
