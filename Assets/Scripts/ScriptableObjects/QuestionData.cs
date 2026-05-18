@@ -32,6 +32,7 @@ public class QuestionData : ScriptableObject
 
     public string question;
     public string[] options;
+    public AudioClip audioClip;
 
     public string answer;
     public float answerIndex;

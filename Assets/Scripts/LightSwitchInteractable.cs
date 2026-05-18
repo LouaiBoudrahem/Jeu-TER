@@ -30,6 +30,11 @@ public class LightSwitchInteractable : MonoBehaviour, IInteractable
         ApplyState(!isOn);
     }
 
+    public void SetState(bool turnOn)
+    {
+        ApplyState(turnOn);
+    }
+
     private void ApplyState(bool turnOn)
     {
         isOn = turnOn;

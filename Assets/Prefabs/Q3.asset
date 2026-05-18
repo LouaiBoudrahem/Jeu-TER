@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b55de86b7d777947b8938bb2d72aafe, type: 3}
+  m_Name: Q3
+  m_EditorClassIdentifier: Assembly-CSharp::QuestionData
+  questionType: 0
+  difficultyLevel: 1
+  subject: 1
+  question: "Qu\u2019est-ce que le surapprentissage (overfitting) en machine learning
+    ?"
+  options:
+  - "A) Un mod\xE8le qui g\xE9n\xE9ralise trop bien"
+  - "B) Un mod\xE8le trop simple pour les donn\xE9es"
+  - "C) Un mod\xE8le qui m\xE9morise trop les donn\xE9es d\u2019entra\xEEnement"
+  - "D) Une technique de compression de donn\xE9es"
+  audioClip: {fileID: 8300000, guid: 9ba1d6246425f71498688e6df5d05e1a, type: 3}
+  answer: 
+  answerIndex: 2
+  correctOptionIndex: 0
+  scoreReward: 100
+  hint: 

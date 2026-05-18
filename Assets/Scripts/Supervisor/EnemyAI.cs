@@ -73,6 +73,31 @@ public class EnemyAI : MonoBehaviour
     private string patrolWaitLookStateName = string.Empty;
     private bool useLookStateAOnNextWait = true;
 
+    public void SetToIdle()
+    {
+        SetState(EnemyState.Patrol);
+        if (agent != null)
+            agent.isStopped = true;
+        Debug.Log("EnemyAI: Set to Idle state");
+    }
+
+    public void SetToChase(Transform target)
+    {
+        player = target;
+        lastKnownPosition = target.position;
+        
+        if (agent != null)
+        {
+            agent.isStopped = false;
+            agent.ResetPath();
+            agent.SetDestination(target.position);
+            Debug.Log($"EnemyAI: Agent path reset and destination set to {target.position}");
+        }
+        
+        SetState(EnemyState.Chase);
+        Debug.Log("EnemyAI: Set to Chase state");
+    }
+
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
