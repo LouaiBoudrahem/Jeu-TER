@@ -1,3 +1,0 @@
-Welcome to the system.
-Use the folders on the left to navigate files.
-Some files may only appear if you have the correct item.
