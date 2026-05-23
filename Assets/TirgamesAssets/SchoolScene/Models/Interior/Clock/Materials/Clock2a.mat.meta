@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 60fee93d4d222354c89328a8d2dd9d8f
+timeCreated: 1448387331
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Clock/Materials/Clock2a.mat
+  uploadId: 903528

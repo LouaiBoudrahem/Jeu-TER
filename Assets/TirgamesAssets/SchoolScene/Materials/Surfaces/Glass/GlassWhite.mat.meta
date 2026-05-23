@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4ab384dc16ed2e947a68d4bb98d53309
+timeCreated: 1443239859
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Glass/GlassWhite.mat
+  uploadId: 903528

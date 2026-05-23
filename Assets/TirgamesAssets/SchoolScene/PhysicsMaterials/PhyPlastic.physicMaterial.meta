@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 69745ff0969cd3e418c9c0e0953b2001
+timeCreated: 1443330316
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/PhysicsMaterials/PhyPlastic.physicMaterial
+  uploadId: 903528

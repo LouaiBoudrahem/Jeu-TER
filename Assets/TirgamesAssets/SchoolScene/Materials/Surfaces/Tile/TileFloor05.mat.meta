@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 576d67843886cd349bd0bd462a97e6f9
+timeCreated: 1449040020
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Tile/TileFloor05.mat
+  uploadId: 903528

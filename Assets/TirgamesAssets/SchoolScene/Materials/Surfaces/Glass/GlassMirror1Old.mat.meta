@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d20047be040e84b44af4c70c5a62496e
+timeCreated: 1443591278
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Glass/GlassMirror1Old.mat
+  uploadId: 903528

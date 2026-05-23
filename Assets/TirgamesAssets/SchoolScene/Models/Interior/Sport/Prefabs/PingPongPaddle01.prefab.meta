@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9fb01e94fcd8606478ef6cf9821c85b8
+timeCreated: 1507885152
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Sport/Prefabs/PingPongPaddle01.prefab
+  uploadId: 903528

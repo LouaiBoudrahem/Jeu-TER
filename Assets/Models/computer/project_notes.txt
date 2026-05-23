@@ -1,0 +1,4 @@
+Project Notes
+The backup drive was moved to the storage room.
+Check the terminal logs for the next step.
+USB access reveals more files.

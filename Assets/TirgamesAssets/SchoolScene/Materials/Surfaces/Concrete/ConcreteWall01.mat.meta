@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0cd269351de42d0499e1cd34428d9bd3
+timeCreated: 1446468487
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Concrete/ConcreteWall01.mat
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a3450ec1a214b8546bc5975c5d567090
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Environment/TerrainLayers/layer_Groundgrass.terrainlayer
+  uploadId: 903528

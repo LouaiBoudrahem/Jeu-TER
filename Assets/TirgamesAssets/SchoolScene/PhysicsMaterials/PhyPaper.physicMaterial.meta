@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c5cfaf68907b03c40888e14ec0b2c135
+timeCreated: 1432039116
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/PhysicsMaterials/PhyPaper.physicMaterial
+  uploadId: 903528

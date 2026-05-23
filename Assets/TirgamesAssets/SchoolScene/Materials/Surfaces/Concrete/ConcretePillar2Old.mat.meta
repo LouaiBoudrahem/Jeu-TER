@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b0b1636fa4fe5a844bd65d3eb3ccd135
+timeCreated: 1476255994
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Concrete/ConcretePillar2Old.mat
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6be853108dd52df41853c5612fcf9703
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Environment/TerrainLayers/layer_AsphaltRoad1_3.terrainlayer
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a54ad03fe2f302641a6c42106018bec2
+timeCreated: 1448434342
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Clock/Prefabs/Clock2a.prefab
+  uploadId: 903528

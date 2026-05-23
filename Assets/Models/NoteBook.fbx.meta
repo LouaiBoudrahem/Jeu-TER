@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: 6bed8e7dc92cd514a9192f18cb0b80d8
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_0_basecolor
+    second: {fileID: 2800000, guid: 2bd5e770ffab9d7499713e86be4bc398, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_10_basecolor
+    second: {fileID: 2800000, guid: bad3620f6e41c194e899286f9f685227, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_11_basecolor
+    second: {fileID: 2800000, guid: 6af5eb5c932fed84284acb360646c1ed, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_12_basecolor
+    second: {fileID: 2800000, guid: cc5cd4722f49f8c4a84bf5b11a6f2987, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_13_basecolor
+    second: {fileID: 2800000, guid: 376ab93be77d5b34197c3bd81b28312b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_14_basecolor
+    second: {fileID: 2800000, guid: 897a1199d4e18e740a17b787c43cf9f3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_15_basecolor
+    second: {fileID: 2800000, guid: 182be21eb010cce42a552217eef3c4c6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_16_basecolor
+    second: {fileID: 2800000, guid: 9e8929812441b6f4a92e270b135cccf6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_17_basecolor
+    second: {fileID: 2800000, guid: 2375bc6ff5900034d840df045115bbaa, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_18_basecolor
+    second: {fileID: 2800000, guid: 0917abe23e077654e876090cf14d79d9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_19_basecolor
+    second: {fileID: 2800000, guid: ce32c95288109454a8fada73cfb206a2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_1_basecolor
+    second: {fileID: 2800000, guid: ab9da4d50f99c604185958501b57aa30, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_20_basecolor
+    second: {fileID: 2800000, guid: 9925c2e9f6c7d554fb87bbf72e1dafc9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_21_basecolor
+    second: {fileID: 2800000, guid: 58a6fa75a5f1b654a8ecf9584aaad2d1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_22_basecolor
+    second: {fileID: 2800000, guid: 856b5c5b53261b34bbc1bbff4b0bd8ed, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_23_basecolor
+    second: {fileID: 2800000, guid: e606c74de9f57d84b9a11d40dcfe6fd7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_24_basecolor
+    second: {fileID: 2800000, guid: 1b35639cf396e354cb142a76a7a6f4a7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_25_basecolor
+    second: {fileID: 2800000, guid: 54ce728c21f2cb4428442d89fb087aef, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_26_basecolor
+    second: {fileID: 2800000, guid: 035a66b1b2d9ee446baa09174fa98767, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_27_basecolor
+    second: {fileID: 2800000, guid: d9d91b3797e6a9745bd4720e46d6e043, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_28_basecolor
+    second: {fileID: 2800000, guid: a11fb073230242a4ba16ad05739b31b7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_29_basecolor
+    second: {fileID: 2800000, guid: 7b790991592280c4c9e3b2cc348fbc86, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_2_basecolor
+    second: {fileID: 2800000, guid: 516a0e62fdbf1ce458a7e2eaeddcf21d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_30_basecolor
+    second: {fileID: 2800000, guid: 4e6d4c6083703d74da500f80467b9b67, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_31_basecolor
+    second: {fileID: 2800000, guid: b0f5c2c247577784ab4b685f6e2e8317, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_32_basecolor
+    second: {fileID: 2800000, guid: 14f4627fb058dc64caea4c41c5a562bd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_33_basecolor
+    second: {fileID: 2800000, guid: 2f6fc51ca4fe74349b857b00fcc3d98a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_34_basecolor
+    second: {fileID: 2800000, guid: fd18116536bfc8b47bd535bdb00bb43c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_35_basecolor
+    second: {fileID: 2800000, guid: e180c81ede9c0a1498e1b79c523a842d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_36_basecolor
+    second: {fileID: 2800000, guid: 0ba5628672fbc39489b46f73d90a2d0a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_37_basecolor
+    second: {fileID: 2800000, guid: f79f828f6492bbf4ab5ae284947ffa2e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_38_basecolor
+    second: {fileID: 2800000, guid: 8f8a841697e93454e9a8f84b527c01f6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_39_basecolor
+    second: {fileID: 2800000, guid: fe278c62b7805b04b9b11ae99be574e0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_3_basecolor
+    second: {fileID: 2800000, guid: f6d8aa4cac7393645b24813ced58b5b2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_40_basecolor
+    second: {fileID: 2800000, guid: 44345fd2d56f5dc4c9a6ce9e7cb011aa, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_41_basecolor
+    second: {fileID: 2800000, guid: 638ac2142e08f4a468e9440b6d6ab8e0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_42_basecolor
+    second: {fileID: 2800000, guid: fc008064734a5dc46ad85f2d399931b2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_43_basecolor
+    second: {fileID: 2800000, guid: d23af0003ff405d47a1c9462a077fbaf, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_44_basecolor
+    second: {fileID: 2800000, guid: 47e4fbc4555697f42a9c9dfbb528c87a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_45_basecolor
+    second: {fileID: 2800000, guid: a07e5440b2365d14a95b2b1123dcbefd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_46_basecolor
+    second: {fileID: 2800000, guid: 8465f039d0a907b4ca9d9e2954921c75, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_47_basecolor
+    second: {fileID: 2800000, guid: 16ecb9f4133f1b84980b967ae90e369a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_48_basecolor
+    second: {fileID: 2800000, guid: 8f8d4e3f8e614e741adefcd946842fc3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_49_basecolor
+    second: {fileID: 2800000, guid: 45dc1df6881c7c740aea0450352de097, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_4_basecolor
+    second: {fileID: 2800000, guid: 105025c1e0cd48f419c71b31f78fee63, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_50_basecolor
+    second: {fileID: 2800000, guid: 29dc62668af5a6540ae4fff55a46b06a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_51_basecolor
+    second: {fileID: 2800000, guid: 279a8b482bb836248bc0a4df82f48cd2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_52_basecolor
+    second: {fileID: 2800000, guid: 5555e6d2ccca5ff4ab77bc4551c8bdd5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_53_basecolor
+    second: {fileID: 2800000, guid: 03db9c6e03d92b14cab13f56042eb8a5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_54_basecolor
+    second: {fileID: 2800000, guid: 9ccc55db9b0f79e40a82df82e3a9a01e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_5_basecolor
+    second: {fileID: 2800000, guid: a4ac031304fac154fb80cbd33e0c3692, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_6_basecolor
+    second: {fileID: 2800000, guid: 997906320af106244bf62a7b84688232, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_7_basecolor
+    second: {fileID: 2800000, guid: d3c11c6523c6fae439f8e18edfefd40b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_8_basecolor
+    second: {fileID: 2800000, guid: 59e2b071dc4dd134e8c84a84587c0c6c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: spiralnotebook3dmodel_tripo_part_9_basecolor
+    second: {fileID: 2800000, guid: 1bd8f12d932211b46a839bb087c60da7, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

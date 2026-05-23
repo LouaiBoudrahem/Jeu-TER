@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3978225c83e484740a2806f497f646ce
+timeCreated: 1441636982
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/PhysicsMaterials/PhyGlass.physicMaterial
+  uploadId: 903528

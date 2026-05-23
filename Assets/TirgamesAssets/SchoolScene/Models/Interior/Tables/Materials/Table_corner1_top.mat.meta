@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a535d18fdf78cf742925c6654d847c20
+timeCreated: 1448388545
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Tables/Materials/Table_corner1_top.mat
+  uploadId: 903528

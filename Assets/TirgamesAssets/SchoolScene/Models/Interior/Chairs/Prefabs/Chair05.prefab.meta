@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1b9c79a4fe117be4bac302e0bbaa5fb8
+timeCreated: 1449136603
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Chairs/Prefabs/Chair05.prefab
+  uploadId: 903528

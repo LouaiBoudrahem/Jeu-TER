@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7f50d77e59611894db84a826cccaede4
+timeCreated: 1521905603
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Scenes/SchoolSceneDayMobile.unity
+  uploadId: 903528

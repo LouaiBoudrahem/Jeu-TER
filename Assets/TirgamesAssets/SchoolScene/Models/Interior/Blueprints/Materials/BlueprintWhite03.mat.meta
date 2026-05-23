@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b194d8e02d1c9a043b613f1a2f432964
+timeCreated: 1464085308
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Blueprints/Materials/BlueprintWhite03.mat
+  uploadId: 903528

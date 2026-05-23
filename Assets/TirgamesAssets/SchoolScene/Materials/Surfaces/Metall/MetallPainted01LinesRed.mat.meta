@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5cdfa7b9300c2f141970a124fe081bf3
+timeCreated: 1463428000
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Surfaces/Metall/MetallPainted01LinesRed.mat
+  uploadId: 903528

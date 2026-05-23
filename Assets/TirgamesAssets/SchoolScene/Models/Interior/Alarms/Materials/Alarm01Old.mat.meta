@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c2553725fb6f36a4dbb3535d0ece1c80
+timeCreated: 1477812514
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Alarms/Materials/Alarm01Old.mat
+  uploadId: 903528

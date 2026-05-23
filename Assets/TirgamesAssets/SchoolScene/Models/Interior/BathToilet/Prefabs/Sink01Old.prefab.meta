@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f559e0fb16c1e534787ca439d370d90b
+timeCreated: 1483465297
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/BathToilet/Prefabs/Sink01Old.prefab
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c5fd34d66403919479f360b1a58bc4e9
+timeCreated: 1477822887
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Lights/Materials/LightLum01Old.mat
+  uploadId: 903528

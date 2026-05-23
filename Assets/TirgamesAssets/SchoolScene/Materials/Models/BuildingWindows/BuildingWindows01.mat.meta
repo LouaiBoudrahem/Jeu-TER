@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3f9b08123773e7345bce54b1b287d7ba
+timeCreated: 1470416618
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Materials/Models/BuildingWindows/BuildingWindows01.mat
+  uploadId: 903528

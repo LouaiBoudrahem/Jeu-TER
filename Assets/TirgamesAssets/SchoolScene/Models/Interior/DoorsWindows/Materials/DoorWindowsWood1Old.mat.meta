@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: acce10884e6ee95418a8e0ff3c0160be
+timeCreated: 1469610867
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/DoorsWindows/Materials/DoorWindowsWood1Old.mat
+  uploadId: 903528

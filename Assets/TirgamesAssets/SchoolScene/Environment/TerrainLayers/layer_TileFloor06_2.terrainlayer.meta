@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8f4c461170ebcd44f8f0f003d3899367
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Environment/TerrainLayers/layer_TileFloor06_2.terrainlayer
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 35af343ad717f1b43bd092f29ac89b4d
+timeCreated: 1465744971
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Science/Chemistry/Prefabs/ChemistryProp03.prefab
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2bc3a1315473c5a48ba53ce761958291
+timeCreated: 1476190305
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Exterior/Benches/Prefabs/Bench01_3.prefab
+  uploadId: 903528

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 620ad4caf9a7838439311ec5520a78d9
+timeCreated: 1464002802
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Alarms/Prefabs/Alarm01.prefab
+  uploadId: 903528

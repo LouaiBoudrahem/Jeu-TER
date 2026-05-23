@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cda5269e9a50046489d7b868e1c386e9
+timeCreated: 1470334700
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Exterior/ConcreteBoxes/Prefabs/ConcreteBox01.prefab
+  uploadId: 903528

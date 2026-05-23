@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2f046d3d8ba1048932879af17bdb72, type: 3}
+  m_Name: NewDesktopData
+  m_EditorClassIdentifier: Assembly-CSharp::DesktopData
+  rootFolders:
+  - id: documents
+    displayName: Documents
+    icon: {fileID: 21300000, guid: 5bb44772ac64c564ca5889e839a652d7, type: 3}
+    requiredItems: []
+    requireAll: 0
+    hiddenByDefault: 0
+    subfolders: []
+    files:
+    - id: welcome_txt
+      displayName: welcome.txt
+      icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
+      content: {fileID: 4900000, guid: 6b84c276ebc95844d81abbda2ed2e05b, type: 3}
+      quizQuestionIndex: -1
+      requiredItems: []
+      requireAll: 0
+      hiddenByDefault: 0
+  - id: pictures
+    displayName: Pictures
+    icon: {fileID: 21300000, guid: 5bb44772ac64c564ca5889e839a652d7, type: 3}
+    requiredItems: []
+    requireAll: 0
+    hiddenByDefault: 0
+    subfolders:
+    - id: vacation2024
+      displayName: Vacation 2024
+      icon: {fileID: 21300000, guid: 5bb44772ac64c564ca5889e839a652d7, type: 3}
+      requiredItems: []
+      requireAll: 0
+      hiddenByDefault: 0
+      subfolders: []
+      files:
+      - id: vac_index
+        displayName: Index.txt
+        icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
+        content: {fileID: 4900000, guid: 0f69873f16dca2b4b82ad3b08dc97ae9, type: 3}
+        quizQuestionIndex: -1
+        requiredItems: []
+        requireAll: 0
+        hiddenByDefault: 0
+    files: []
+  - id: project
+    displayName: Project
+    icon: {fileID: 21300000, guid: 5bb44772ac64c564ca5889e839a652d7, type: 3}
+    requiredItems: []
+    requireAll: 0
+    hiddenByDefault: 0
+    subfolders: []
+    files:
+    - id: proj_notes
+      displayName: Notes.txt
+      icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
+      content: {fileID: 4900000, guid: 401cf17ed63b9c242a539f179a06e154, type: 3}
+      quizQuestionIndex: -1
+      requiredItems:
+      - {fileID: 11400000, guid: 56281cda49b46f645852840472d9bbf2, type: 2}
+      requireAll: 1
+      hiddenByDefault: 1
+    - id: proj_db
+      displayName: Database.dump
+      icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
+      content: {fileID: 4900000, guid: 6458a38dd364d0e4f8d7e31b8fa8fd2b, type: 3}
+      quizQuestionIndex: -1
+      requiredItems: []
+      requireAll: 0
+      hiddenByDefault: 0
+  rootFiles:
+  - id: readme
+    displayName: Readme
+    icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
+    content: {fileID: 4900000, guid: cb85f07e84dd4ef4ca820ea6137f021e, type: 3}
+    quizQuestionIndex: -1
+    requiredItems: []
+    requireAll: 0
+    hiddenByDefault: 0
+  - id: secret
+    displayName: Secret File
+    icon: {fileID: 21300000, guid: f21308a6a35211147b5f43b0533ec5fb, type: 3}
+    content: {fileID: 4900000, guid: 8f2cd9a696b9d214d9dbe80f2e4e38e9, type: 3}
+    quizQuestionIndex: 0
+    requiredItems: []
+    requireAll: 0
+    hiddenByDefault: 0
+  - id: passwords
+    displayName: Password.txt
+    icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
+    content: {fileID: 4900000, guid: 9e81cb81e02692046a57a709a7b69b44, type: 3}
+    quizQuestionIndex: -1
+    requiredItems:
+    - {fileID: 11400000, guid: 56281cda49b46f645852840472d9bbf2, type: 2}
+    requireAll: 1
+    hiddenByDefault: 1
+  - id: solution
+    displayName: solution.txt
+    icon: {fileID: 21300000, guid: ec77fec069643f64cb1a10c8fba8416a, type: 3}
+    content: {fileID: 4900000, guid: 103e83f9bc858a746907b5208552560c, type: 3}
+    quizQuestionIndex: -1
+    requiredItems:
+    - {fileID: 11400000, guid: 56281cda49b46f645852840472d9bbf2, type: 2}
+    requireAll: 1
+    hiddenByDefault: 1

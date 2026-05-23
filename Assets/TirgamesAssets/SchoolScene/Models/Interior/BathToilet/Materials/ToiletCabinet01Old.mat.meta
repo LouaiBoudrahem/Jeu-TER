@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7c0bd6cb88066794a87566f113e0064d
+timeCreated: 1483448515
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/BathToilet/Materials/ToiletCabinet01Old.mat
+  uploadId: 903528

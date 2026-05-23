@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 145ba44eea651cd43962dbb35efbef73
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Scenes/SchoolSceneNight/LightingData.asset
+  uploadId: 903528

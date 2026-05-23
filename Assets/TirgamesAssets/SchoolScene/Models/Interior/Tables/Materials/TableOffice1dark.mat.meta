@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 301e70eac55f2164198c3c136447ccde
+timeCreated: 1448388544
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Tables/Materials/TableOffice1dark.mat
+  uploadId: 903528

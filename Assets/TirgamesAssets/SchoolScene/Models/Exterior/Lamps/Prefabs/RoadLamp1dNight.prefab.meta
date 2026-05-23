@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5d69fd2b68f14904687855db1734bbd6
+timeCreated: 1467456152
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Exterior/Lamps/Prefabs/RoadLamp1dNight.prefab
+  uploadId: 903528

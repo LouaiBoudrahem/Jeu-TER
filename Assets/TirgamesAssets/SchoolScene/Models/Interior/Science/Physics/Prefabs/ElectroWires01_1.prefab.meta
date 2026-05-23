@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 31cd5e5e32fa1a24ebf974dd8a4779ee
+timeCreated: 1464584944
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 66006
+  packageName: School Scene
+  packageVersion: 1.6
+  assetPath: Assets/TirgamesAssets/SchoolScene/Models/Interior/Science/Physics/Prefabs/ElectroWires01_1.prefab
+  uploadId: 903528
