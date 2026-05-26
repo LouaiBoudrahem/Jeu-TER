@@ -1,6 +1,9 @@
+using System;
 using UnityEngine;
 public class PickupItem : MonoBehaviour, IInteractable
 {
+    public static event Action<InventoryItem, PickupItem> ItemPickedUp;
+
     [SerializeField] private InventoryItem itemToPickup;
     [SerializeField] private int quantity = 1;
     [SerializeField] private bool destroyAfterPickup = true;
@@ -22,6 +25,8 @@ public class PickupItem : MonoBehaviour, IInteractable
         {
             if (InventoryManager.AddItem(itemToPickup, quantity))
             {
+                ItemPickedUp?.Invoke(itemToPickup, this);
+
                 if (destroyAfterPickup)
                 {
                     Destroy(gameObject);

@@ -20,7 +20,7 @@ public class DoorLockKeypadInteractable : MonoBehaviour, IInteractable
             return;
         }
 
-        Player player = FindObjectOfType<Player>();
+        Player player = FindFirstObjectByType<Player>();
         if (player == null)
         {
             TransientDebugConsoleUI.LogWarning("DoorLockKeypadInteractable.Interact: no Player found in scene.");

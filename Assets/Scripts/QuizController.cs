@@ -12,6 +12,10 @@ public class QuizController : MonoBehaviour
     public static int CurrentScore { get; private set; }
     public static event Action<QuestionData, bool> QuestionResultEvaluated;
 
+    private static bool objective400Advanced;
+    private static bool objective600Advanced;
+    private static bool objective800Advanced;
+
     [Header("Question Data")]
     [SerializeField] private QuestionData questionData;
 
@@ -120,6 +124,25 @@ public class QuizController : MonoBehaviour
         }
 
         CurrentScore += amount;
+        NotifyScoreObjectiveProgress();
+    }
+
+    private static void NotifyScoreObjectiveProgress()
+    {
+        TryAdvanceScoreObjective(400, ref objective400Advanced);
+        TryAdvanceScoreObjective(600, ref objective600Advanced);
+        TryAdvanceScoreObjective(800, ref objective800Advanced);
+    }
+
+    private static void TryAdvanceScoreObjective(int threshold, ref bool advancedFlag)
+    {
+        if (advancedFlag || CurrentScore < threshold)
+        {
+            return;
+        }
+
+        advancedFlag = true;
+        ObjectiveManager.Instance?.AdvanceObjective();
     }
 
     private void CacheUIReferences()
@@ -427,6 +450,7 @@ public class QuizController : MonoBehaviour
         }
 
         UpdateScoreText();
+        NotifyScoreObjectiveProgress();
         QuestionResultEvaluated?.Invoke(questionData, isCorrect);
 
         CloseQuiz();

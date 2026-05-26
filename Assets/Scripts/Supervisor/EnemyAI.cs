@@ -98,6 +98,62 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("EnemyAI: Set to Chase state");
     }
 
+    /// <summary>
+    /// Instantly teleports the enemy to the given Transform's position and
+    /// resumes patrol from there. Safe to call at any time.
+    /// </summary>
+    public void TeleportTo(Transform destination)
+    {
+        TeleportTo(destination.position);
+    }
+
+    /// <summary>
+    /// Instantly teleports the enemy to a world-space position and resumes
+    /// patrol from there. Uses agent.Warp() so the NavMeshAgent doesn't
+    /// rubber-band back to its previous destination.
+    /// </summary>
+    public void TeleportTo(Vector3 worldPosition)
+    {
+        // Stop the agent and clear its current path so it doesn't
+        // fight the warp and snap back on the next frame.
+        if (agent != null)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+        }
+
+        // Warp is the only reliable way to reposition a NavMeshAgent.
+        // Setting transform.position directly gets overridden by the agent.
+        if (agent != null && agent.isOnNavMesh)
+        {
+            agent.Warp(worldPosition);
+        }
+        else
+        {
+            // Fallback if the agent isn't on the mesh yet (e.g. called before Start).
+            transform.position = worldPosition;
+        }
+
+        // Reset all mid-state tracking so patrol starts cleanly from here.
+        isWaiting            = false;
+        waitTimer            = 0f;
+        investigateTimer     = 0f;
+        currentLookAnimation = -1;
+        patrolWaitLookStateHash  = 0;
+        patrolWaitLookStateName  = string.Empty;
+        currentAnimationState    = string.Empty;
+
+        // Force back into Patrol and head to the next patrol point.
+        state = EnemyState.Patrol;
+
+        if (agent != null)
+            agent.isStopped = false;
+
+        GoToNextPatrolPoint();
+
+        Debug.Log($"EnemyAI: Teleported to {worldPosition}, resuming patrol.");
+    }
+
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -134,10 +190,10 @@ public class EnemyAI : MonoBehaviour
 
         switch (state)
         {
-            case EnemyState.Patrol:     UpdatePatrol();     break;
+            case EnemyState.Patrol:      UpdatePatrol();      break;
             case EnemyState.Investigate: UpdateInvestigate(); break;
-            case EnemyState.Chase:      UpdateChase();      break;
-            case EnemyState.Catch:      UpdateCatch();      break;
+            case EnemyState.Chase:       UpdateChase();       break;
+            case EnemyState.Catch:       UpdateCatch();       break;
         }
 
         if (state != EnemyState.Catch && !catchRecoveryActive)
@@ -299,7 +355,6 @@ public class EnemyAI : MonoBehaviour
     {
         agent.speed = patrolSpeed;
 
-        // Patrol proximity audio: play only while patrolling and player is within distance
         if (player != null && patrolProximityAudioSource != null)
         {
             float pdist = Vector3.Distance(transform.position, player.position);
@@ -420,8 +475,8 @@ public class EnemyAI : MonoBehaviour
 
     private void CacheAnimationHashes()
     {
-        walkStateHash = string.IsNullOrWhiteSpace(walkStateName) ? 0 : Animator.StringToHash(walkStateName);
-        runStateHash = string.IsNullOrWhiteSpace(runStateName) ? 0 : Animator.StringToHash(runStateName);
+        walkStateHash  = string.IsNullOrWhiteSpace(walkStateName)  ? 0 : Animator.StringToHash(walkStateName);
+        runStateHash   = string.IsNullOrWhiteSpace(runStateName)   ? 0 : Animator.StringToHash(runStateName);
         catchStateHash = string.IsNullOrWhiteSpace(catchStateName) ? 0 : Animator.StringToHash(catchStateName);
         lookStateHashA = string.IsNullOrWhiteSpace(lookStateNameA) ? 0 : Animator.StringToHash(lookStateNameA);
         lookStateHashB = string.IsNullOrWhiteSpace(lookStateNameB) ? 0 : Animator.StringToHash(lookStateNameB);

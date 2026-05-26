@@ -279,6 +279,8 @@ public class VendingMachineMinigame : MonoBehaviour
             activePlayer.ShowInteractionMessage(successMessage);
         }
 
+        ObjectiveManager.Instance?.CompleteVendingMachine();
+
         if (closeRoutine != null)
         {
             StopCoroutine(closeRoutine);

@@ -38,6 +38,8 @@ public class ComputerAccessCodeTerminal : MonoBehaviour
     private bool isOpen;
     private bool isUnlocked;
     private InputAction cancelAction;
+    [SerializeField] private float successCloseDelay = 0.75f;
+    private Coroutine closeAfterSuccessRoutine;
 
     private void Awake()
     {
@@ -75,6 +77,12 @@ public class ComputerAccessCodeTerminal : MonoBehaviour
         UnbindUI();
         isOpen = false;
         closedCallback = null;
+
+        if (closeAfterSuccessRoutine != null)
+        {
+            StopCoroutine(closeAfterSuccessRoutine);
+            closeAfterSuccessRoutine = null;
+        }
     }
 
     private void Update()
@@ -183,6 +191,24 @@ public class ComputerAccessCodeTerminal : MonoBehaviour
         {
             accessCodeInput.DeactivateInputField();
         }
+
+        if (closeAfterSuccessRoutine != null)
+        {
+            StopCoroutine(closeAfterSuccessRoutine);
+        }
+
+        closeAfterSuccessRoutine = StartCoroutine(CloseAfterSuccessRoutine());
+    }
+
+    private System.Collections.IEnumerator CloseAfterSuccessRoutine()
+    {
+        if (successCloseDelay > 0f)
+        {
+            yield return new WaitForSeconds(successCloseDelay);
+        }
+
+        CloseTerminal();
+        closeAfterSuccessRoutine = null;
     }
 
     private void ShuffleLabels()

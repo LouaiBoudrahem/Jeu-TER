@@ -90,6 +90,11 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHa
             return;
         }
 
+        if (eventData.button == PointerEventData.InputButton.Left && inventoryUI.TryUseSlot(slotIndex))
+        {
+            return;
+        }
+
         inventoryUI.SelectSlot(slotIndex);
     }
 

@@ -10,6 +10,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform slotContainer;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private ExamPaperMinigameController examPaperMinigameController;
 
     [Space]
     [SerializeField] private Image itemDetailIcon;
@@ -225,6 +226,35 @@ public class InventoryUI : MonoBehaviour
         InventorySlot slot = inventory.Slots[rootIndex];
         UpdateDetails(slot);
         RefreshUI(0);
+    }
+
+    public bool TryUseSlot(int slotIndex)
+    {
+        int rootIndex = inventory.GetRootIndex(slotIndex);
+        if (rootIndex < 0 || rootIndex >= inventory.SlotCount)
+        {
+            return false;
+        }
+
+        InventorySlot slot = inventory.Slots[rootIndex];
+        if (slot.IsEmpty || !slot.IsAnchor || slot.Item == null || !slot.Item.CanOpenExamPaper)
+        {
+            return false;
+        }
+
+        ExamPaperMinigameController controller = ResolveExamPaperController();
+        if (controller == null)
+        {
+            Debug.LogWarning("InventoryUI.TryUseSlot: no ExamPaperMinigameController found.");
+            return false;
+        }
+
+        selectedRootIndex = -1;
+        RefreshUI(0);
+        ClearDetailDisplay();
+
+        controller.Begin(slot.Item.ExamQuestions, HandleExamPaperClosed);
+        return true;
     }
 
     public void BeginDrag(int slotIndex, PointerEventData eventData)
@@ -551,6 +581,32 @@ public class InventoryUI : MonoBehaviour
         itemDetailName.text = string.Empty;
         itemDetailDescription.text = string.Empty;
         itemDetailQuantity.text = string.Empty;
+    }
+
+    private ExamPaperMinigameController ResolveExamPaperController()
+    {
+        if (examPaperMinigameController != null)
+        {
+            return examPaperMinigameController;
+        }
+
+        examPaperMinigameController = FindFirstObjectByType<ExamPaperMinigameController>(FindObjectsInactive.Include);
+        if (examPaperMinigameController == null)
+        {
+            examPaperMinigameController = FindAnyObjectByType<ExamPaperMinigameController>(FindObjectsInactive.Include);
+        }
+
+        if (examPaperMinigameController == null)
+        {
+            Debug.LogWarning("InventoryUI: no ExamPaperMinigameController found in the scene. The exam paper will not open.");
+        }
+
+        return examPaperMinigameController;
+    }
+
+    private void HandleExamPaperClosed()
+    {
+        RefreshUI(0);
     }
 
     private void CreateDragVisual()

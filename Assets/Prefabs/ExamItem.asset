@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a04039bfa862d478d59d3b56652281, type: 3}
+  m_Name: ExamItem
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryItem
+  itemName: Feuille d'examen
+  itemDescription: "Feuille d'examen d'Algorithmique de l'ann\xE9e derni\xE8re"
+  itemIcon: {fileID: 21300000, guid: fda91cab046cd834d80e5a6894da3550, type: 3}
+  maxStackSize: 1
+  gridWidth: 2
+  gridHeight: 2
+  isConsumable: 0
+  useType: 1
+  examQuestions:
+  - {fileID: 11400000, guid: 137e31346682ea94fbc8c49d556bc4bd, type: 2}
+  - {fileID: 11400000, guid: a8590182aadbf0e4f95db8c8716ed9fb, type: 2}
+  - {fileID: 11400000, guid: 301172267b90b664ba2888e8eb8f2b36, type: 2}
+  - {fileID: 11400000, guid: d418382c1d469ce4197c08dff2fa8307, type: 2}
+  - {fileID: 11400000, guid: 829115e285354f546b5c96b30b849766, type: 2}

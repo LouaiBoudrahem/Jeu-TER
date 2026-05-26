@@ -16,11 +16,13 @@ public class TerminalController : MonoBehaviour
     private FileSystemNode root;
     private FileSystemNode currentNode;
     private StringBuilder outputLog = new StringBuilder();
+    private bool flagFileFound;
 
     private const string Prompt = "<color=#00ff00>user@linux</color>:<color=#5599ff>{0}</color>$ ";
 
     void Start()
     {
+        flagFileFound = false;
         root = TerminalFileSystem.BuildFileSystem();
         currentNode = root.FindChild("home")?.FindChild("user") ?? root;
 
@@ -175,7 +177,11 @@ public class TerminalController : MonoBehaviour
         {
             AppendLine(found.Content);
             if (found.Name == "flag.txt")
+            {
+                flagFileFound = true;
+                ObjectiveManager.Instance?.FindFlagFile();
                 AppendLine("\n<color=#ffff00>🎉 Congratulations! You found the flag!</color>");
+            }
         }
     }
 
@@ -204,6 +210,11 @@ public class TerminalController : MonoBehaviour
 
     public void CloseTerminal()
     {
+        if (flagFileFound)
+        {
+            ObjectiveManager.Instance?.CompleteLinuxMinigame();
+        }
+
         LinuxMinigameController controller = FindObjectOfType<LinuxMinigameController>(true);
         if (controller != null)
         {

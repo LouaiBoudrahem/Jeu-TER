@@ -181,6 +181,7 @@ public class RoomQuizEventManager : MonoBehaviour
     {
         quizStarted = true;
         Debug.Log("RoomQuizEventManager: Quiz event started!");
+        ObjectiveManager.Instance?.SetObjective(4);
         if (lightSwitchInteractable != null)
         {
             lightSwitchInteractable.SetState(true);
@@ -463,6 +464,7 @@ public class RoomQuizEventManager : MonoBehaviour
         if (quizCanvasRoot != null)
             quizCanvasRoot.SetActive(false);
 
+        ObjectiveManager.Instance?.AdvanceObjective();
         quizCompleted = true;
     }
 
@@ -479,18 +481,26 @@ public class RoomQuizEventManager : MonoBehaviour
 
         supervisorRoot.gameObject.SetActive(true);
 
-        if (supervisorSpawnPoint != null)
-        {
-            supervisorRoot.position = supervisorSpawnPoint.position;
-            supervisorRoot.rotation = supervisorSpawnPoint.rotation;
-            Debug.Log($"RoomQuizEventManager: Supervisor teleported to spawn point {supervisorSpawnPoint.name}");
-        }
-
         if (enemyAI == null)
         {
             enemyAI = supervisorRoot.GetComponent<EnemyAI>();
             if (enemyAI == null)
                 enemyAI = supervisorRoot.GetComponentInChildren<EnemyAI>();
+        }
+
+        if (supervisorSpawnPoint != null)
+        {
+            if (enemyAI != null)
+            {
+                enemyAI.TeleportTo(supervisorSpawnPoint);
+            }
+            else
+            {
+                supervisorRoot.position = supervisorSpawnPoint.position;
+                supervisorRoot.rotation = supervisorSpawnPoint.rotation;
+            }
+
+            Debug.Log($"RoomQuizEventManager: Supervisor teleported to spawn point {supervisorSpawnPoint.name}");
         }
 
         Debug.Log("RoomQuizEventManager: Waiting 2 seconds for supervisor to change states...");
