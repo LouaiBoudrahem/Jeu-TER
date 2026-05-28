@@ -19,10 +19,11 @@ MonoBehaviour:
   gridWidth: 2
   gridHeight: 2
   isConsumable: 0
-  useType: 1
+  useType: 2
   examQuestions:
   - {fileID: 11400000, guid: 137e31346682ea94fbc8c49d556bc4bd, type: 2}
   - {fileID: 11400000, guid: a8590182aadbf0e4f95db8c8716ed9fb, type: 2}
   - {fileID: 11400000, guid: 301172267b90b664ba2888e8eb8f2b36, type: 2}
   - {fileID: 11400000, guid: d418382c1d469ce4197c08dff2fa8307, type: 2}
   - {fileID: 11400000, guid: 829115e285354f546b5c96b30b849766, type: 2}
+  customPanelPrefab: {fileID: 2615044141648660984, guid: a741e4f7e92403245bafe5c22e595f52, type: 3}

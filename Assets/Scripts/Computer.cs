@@ -50,13 +50,12 @@ public class Computer : MonoBehaviour, IInteractable
     {
         if (Player == null)
         {
-            TransientDebugConsoleUI.LogWarning("Computer.Interact: no Player reference set.");
             return;
         }
 
         if (isSolved)
         {
-            Player.ShowInteractionMessage("This computer is already solved.");
+            Player.ShowInteractionMessage("Ce cahier est déjà résolu.");
             return;
         }
 
@@ -65,7 +64,7 @@ public class Computer : MonoBehaviour, IInteractable
             string itemName = requiredItem != null ? requiredItem.ItemName : "required item";
             string message = string.Format(missingItemMessage, itemName);
             Player.ShowInteractionMessage(message);
-            TransientDebugConsoleUI.LogWarning($"Computer.Interact on '{name}': player is missing required item '{itemName}'.");
+            TransientDebugConsoleUI.LogWarning($"Le joueur ne possède pas l'objet requis '{itemName}'.");
             return;
         }
 
@@ -91,7 +90,6 @@ public class Computer : MonoBehaviour, IInteractable
         QuestionData selectedQuestion = ResolveQuestionForThisComputer();
         if (selectedQuestion == null)
         {
-            TransientDebugConsoleUI.LogWarning($"Computer.Interact on '{name}': no question found. Assign a valid questionId or enable random fallback.");
             return;
         }
 
@@ -102,13 +100,11 @@ public class Computer : MonoBehaviour, IInteractable
 
         if (string.IsNullOrWhiteSpace(minigameSceneName))
         {
-            TransientDebugConsoleUI.LogWarning("Computer.Interact: minigame scene name is empty.");
             return;
         }
 
         if (!Application.CanStreamedLevelBeLoaded(minigameSceneName))
         {
-            TransientDebugConsoleUI.LogWarning($"Computer.Interact: scene '{minigameSceneName}' is not in Build Settings.");
             return;
         }
 

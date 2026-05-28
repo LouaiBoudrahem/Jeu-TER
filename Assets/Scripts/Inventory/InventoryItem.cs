@@ -6,7 +6,8 @@ public class InventoryItem : ScriptableObject
     public enum ItemUseType
     {
         None,
-        ExamPaper
+        ExamPaper,
+        ExamPanelDirect
     }
 
     [SerializeField] private string itemName;
@@ -28,5 +29,6 @@ public class InventoryItem : ScriptableObject
     public bool IsConsumable => isConsumable;
     public ItemUseType UseType => useType;
     public QuestionData[] ExamQuestions => examQuestions;
-    public bool CanOpenExamPaper => useType == ItemUseType.ExamPaper || (examQuestions != null && examQuestions.Length > 0);
+    public bool CanOpenExamPaper => useType != ItemUseType.ExamPanelDirect && (useType == ItemUseType.ExamPaper || (examQuestions != null && examQuestions.Length > 0));
+    public bool IsExamPanelDirect => useType == ItemUseType.ExamPanelDirect;
 }

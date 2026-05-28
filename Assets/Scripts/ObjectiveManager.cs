@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 
 public class ObjectiveManager : MonoBehaviour
@@ -30,6 +31,9 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] private CanvasGroup objectivePanelGroup; 
     [SerializeField] private TextMeshProUGUI objectiveLabel;   
     [SerializeField] private TextMeshProUGUI objectiveText;     
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    [SerializeField] private string scorePrefix = "Score: ";
 
     [Header("Objectives (ordered)")]
     [SerializeField] private List<string> objectives = new List<string>
@@ -65,6 +69,14 @@ public class ObjectiveManager : MonoBehaviour
     public int CurrentIndex => currentIndex;
 
     public bool IsComplete => currentIndex >= objectives.Count;
+
+    private void Update()
+    {
+        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
+        {
+            ShowCurrentObjectiveWithScore();
+        }
+    }
 
     public void StartObjectives()
     {
@@ -169,6 +181,21 @@ public class ObjectiveManager : MonoBehaviour
         MarkObjectiveComplete(3);
     }
 
+    public void ShowCurrentObjectiveWithScore()
+    {
+        if (objectivePanelGroup == null)
+        {
+            return;
+        }
+
+        if (activeRoutine != null)
+        {
+            StopCoroutine(activeRoutine);
+        }
+
+        activeRoutine = StartCoroutine(TransitionToObjective(GetCurrentObjectiveText()));
+    }
+
     private void MarkObjectiveComplete(int index)
     {
         if (index < 0 || index >= objectiveCompletionState.Count)
@@ -250,13 +277,40 @@ public class ObjectiveManager : MonoBehaviour
     }
 
 
+    private string GetCurrentObjectiveText()
+    {
+        if (currentIndex < 0)
+        {
+            return objectives.Count > 0 ? objectives[0] : string.Empty;
+        }
+
+        if (currentIndex >= objectives.Count)
+        {
+            return "All objectives completed.";
+        }
+
+        return objectives[currentIndex];
+    }
+
     private void SetText(string text)
     {
         if (objectiveText != null)
+        {
             objectiveText.text = text;
+        }
+
+        UpdateScoreText();
 
         if (objectiveLabel != null)
             objectiveLabel.text = $"OBJECTIVE  {currentIndex + 1}/{objectives.Count}";
+    }
+
+    private void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"{scorePrefix}{QuizController.CurrentScore}";
+        }
     }
 
 

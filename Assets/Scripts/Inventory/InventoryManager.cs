@@ -46,7 +46,13 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
 
-        return instance.playerInventory.AddItem(item, quantity);
+        bool added = instance.playerInventory.AddItem(item, quantity);
+        if (added && item != null)
+        {
+            TransientDebugConsoleUI.ItemAcquired(item.ItemName);
+        }
+
+        return added;
     }
 
     public static bool RemoveItem(InventoryItem item, int quantity = 1)

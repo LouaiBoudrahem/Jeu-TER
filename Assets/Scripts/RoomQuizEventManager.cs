@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 using TMPro;
 
@@ -55,6 +57,12 @@ public class RoomQuizEventManager : MonoBehaviour
     private Player playerReference;
     private Coroutine quizCoroutine;
     private bool hasAnsweredCurrentQuestion = false;
+
+    private void Start()
+    {
+        EnsureEventSystemExists();
+        EnsureQuizCanvasCanReceiveClicks();
+    }
 
     private void Awake()
     {
@@ -262,6 +270,7 @@ public class RoomQuizEventManager : MonoBehaviour
         if (quizCanvasRoot != null)
         {
             quizCanvasRoot.SetActive(true);
+            EnsureQuizCanvasCanReceiveClicks();
             Debug.Log("RoomQuizEventManager: Quiz canvas activated");
             if (timerDisplay != null)
                 timerDisplay.fillAmount = 1f;
@@ -516,6 +525,39 @@ public class RoomQuizEventManager : MonoBehaviour
     public int GetCorrectAnswerCount()
     {
         return correctAnswerCount;
+    }
+
+    private void EnsureEventSystemExists()
+    {
+        if (EventSystem.current != null)
+        {
+            return;
+        }
+
+        GameObject eventSystemObject = new GameObject("EventSystem (Auto)");
+        eventSystemObject.AddComponent<EventSystem>();
+        eventSystemObject.AddComponent<InputSystemUIInputModule>();
+    }
+
+    private void EnsureQuizCanvasCanReceiveClicks()
+    {
+        if (quizCanvasRoot == null)
+        {
+            return;
+        }
+
+        Canvas canvas = quizCanvasRoot.GetComponentInChildren<Canvas>(true);
+        if (canvas != null && canvas.GetComponent<GraphicRaycaster>() == null)
+        {
+            canvas.gameObject.AddComponent<GraphicRaycaster>();
+        }
+
+        CanvasGroup canvasGroup = quizCanvasRoot.GetComponent<CanvasGroup>();
+        if (canvasGroup != null)
+        {
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+        }
     }
 
     public int GetTotalQuestions()

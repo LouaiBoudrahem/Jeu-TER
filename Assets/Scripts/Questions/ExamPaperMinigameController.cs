@@ -12,6 +12,8 @@ public class ExamPaperMinigameController : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private GameObject rootPanel;
+    [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private Canvas rootCanvas;
     [SerializeField] private TMP_Text questionText;
     [SerializeField] private TMP_Text feedbackText;
@@ -517,6 +519,10 @@ public class ExamPaperMinigameController : MonoBehaviour
             validateButton.interactable = false;
         }
 
+        // Tell inventory the exam was completed so it removes the item
+        if (inventoryUI != null)
+            inventoryUI.NotifyExamCompleted();
+
         SetFeedback($"Exam complete. {correctAnswerCount}/{questions.Length} correct. +{totalAwardedScore} points.", true);
         StartCloseAfterDelay(finishCloseDelay);
     }
@@ -567,6 +573,10 @@ public class ExamPaperMinigameController : MonoBehaviour
 
         onClosed?.Invoke();
         onClosed = null;
+
+        // Close the inventory panel so the player returns to the game
+        if (inventoryPanel != null)
+            inventoryPanel.SetActive(false);
     }
 
     private void SetAnswerButtonsInteractable(bool interactable)

@@ -27,6 +27,8 @@ public class InventoryUI : MonoBehaviour
     private Image dragIconImage;
     private CanvasGroup dragIconCanvasGroup;
     private int selectedRootIndex = -1;
+    private InventoryItem examDirectItem;
+    private bool examCompleted;
     private int draggingRootIndex = -1;
     private bool dropHandledThisDrag;
     private bool mouseButtonDown;
@@ -222,8 +224,21 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        selectedRootIndex = rootIndex;
         InventorySlot slot = inventory.Slots[rootIndex];
+
+        if (slot.Item != null && slot.Item.IsExamPanelDirect)
+        {
+            ExamPaperMinigameController controller = ResolveExamPaperController();
+            if (controller != null && slot.Item.ExamQuestions != null && slot.Item.ExamQuestions.Length > 0)
+            {
+                examDirectItem = slot.Item;
+                examCompleted = false;
+                controller.Begin(slot.Item.ExamQuestions, HandleExamPaperClosed);
+                return;
+            }
+        }
+
+        selectedRootIndex = rootIndex;
         UpdateDetails(slot);
         RefreshUI(0);
     }
@@ -606,7 +621,19 @@ public class InventoryUI : MonoBehaviour
 
     private void HandleExamPaperClosed()
     {
+        if (examCompleted && examDirectItem != null)
+        {
+            inventory.RemoveItem(examDirectItem, 1);
+        }
+        examDirectItem = null;
+        examCompleted = false;
         RefreshUI(0);
+    }
+
+    // Call this from ExamPaperMinigameController when the exam is finished (not just closed)
+    public void NotifyExamCompleted()
+    {
+        examCompleted = true;
     }
 
     private void CreateDragVisual()

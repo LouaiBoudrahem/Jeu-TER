@@ -20,6 +20,12 @@ public class TransientDebugConsoleUI : MonoBehaviour
 
     private Coroutine hideRoutine;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip defaultItemAcquiredClip;
+    [SerializeField] private string itemAcquiredPrefix = "Vous avez acquis : ";
+    [SerializeField] private bool suppressDebugLogForItemMessages = true;
+
     private void Awake()
     {
         if (panelRoot == null)
@@ -40,6 +46,11 @@ public class TransientDebugConsoleUI : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+        }
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
         }
     }
 
@@ -89,6 +100,29 @@ public class TransientDebugConsoleUI : MonoBehaviour
         }
     }
 
+    public static void ItemAcquired(string itemName, AudioClip clip = null)
+    {
+        TransientDebugConsoleUI ui = GetInstance();
+
+        string prefix = ui != null ? ui.itemAcquiredPrefix : "Vous avez acquis : ";
+        string message = $"{prefix}{itemName}";
+
+        if (ui != null)
+        {
+            ui.ShowMessage(message, LogType.Log);
+            ui.PlayClip(clip);
+        }
+        else
+        {
+            if (clip != null)
+            {
+                AudioSource.PlayClipAtPoint(clip, Camera.main != null ? Camera.main.transform.position : Vector3.zero);
+            }
+        }
+
+    }
+
+
     private static TransientDebugConsoleUI GetInstance()
     {
         if (instance != null)
@@ -98,6 +132,21 @@ public class TransientDebugConsoleUI : MonoBehaviour
 
         instance = FindObjectOfType<TransientDebugConsoleUI>(true);
         return instance;
+    }
+
+    private void PlayClip(AudioClip clip)
+    {
+        AudioClip toPlay = clip ?? defaultItemAcquiredClip;
+        if (toPlay == null)
+            return;
+
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(toPlay);
+            return;
+        }
+
+        AudioSource.PlayClipAtPoint(toPlay, Camera.main != null ? Camera.main.transform.position : Vector3.zero);
     }
 
     private void ShowMessage(string message, LogType logType)
