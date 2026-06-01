@@ -141,6 +141,7 @@ public class MainMenu : MonoBehaviour
     private void LoadGameplaySceneWithTransition()
     {
         Debug.Log("MainMenu: Play button clicked — starting transition");
+        QuizController.ResetScore();
         StartSceneTransition(gameplaySceneName);
     }
 

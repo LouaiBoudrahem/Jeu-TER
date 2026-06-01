@@ -43,6 +43,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        // Ensure global quiz score resets when the player (game) starts
+        QuizController.ResetScore();
+
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
 
@@ -264,6 +267,8 @@ public class Player : MonoBehaviour
     {
         if (cinemachineCamera == null)
             return;
+        Component newVirtualCamComp = FindVirtualCameraComponent(cinemachineCamera);
+
         if (activeCinemachineCamera != null && activeCinemachineCamera != cinemachineCamera)
         {
             if (cameraTransitionCoroutine != null)
@@ -274,14 +279,30 @@ public class Player : MonoBehaviour
 
             RestorePreviousVirtualCameraPriority();
             activeCinemachineCamera.SetActive(false);
-
-            if (playerMainCamera != null && cinemachineCamera != null)
+            if (newVirtualCamComp == null)
             {
-                Transform t = cinemachineCamera.transform;
-                playerMainCamera.transform.SetPositionAndRotation(t.position, t.rotation);
-                playerMainCamera.enabled = true;
+                // Non-Cinemachine camera: use player's main camera to mimic its transform
+                if (playerMainCamera != null && cinemachineCamera != null)
+                {
+                    Transform t = cinemachineCamera.transform;
+                    playerMainCamera.transform.SetPositionAndRotation(t.position, t.rotation);
+                    playerMainCamera.enabled = true;
+                }
+
                 if (cinemachineOutputCamera != null)
                     cinemachineOutputCamera.enabled = false;
+            }
+            else
+            {
+                // Cinemachine virtual camera: restore player main camera and disable output
+                if (playerMainCamera != null && cinemachineCamera != null)
+                {
+                    Transform t = cinemachineCamera.transform;
+                    playerMainCamera.transform.SetPositionAndRotation(t.position, t.rotation);
+                    playerMainCamera.enabled = true;
+                    if (cinemachineOutputCamera != null)
+                        cinemachineOutputCamera.enabled = false;
+                }
             }
 
             activeCinemachineCamera = cinemachineCamera;
@@ -297,16 +318,36 @@ public class Player : MonoBehaviour
             cameraTransitionCoroutine = null;
         }
 
-        if (cinemachineOutputCamera != null)
-            cinemachineOutputCamera.enabled = true;
+        if (newVirtualCamComp != null)
+        {
+            if (cinemachineOutputCamera != null)
+                cinemachineOutputCamera.enabled = true;
 
-        if (playerMainCamera != null)
-            playerMainCamera.enabled = false;
+            if (playerMainCamera != null)
+                playerMainCamera.enabled = false;
 
-        activeCinemachineCamera = cinemachineCamera;
-        cinemachineCamera.SetActive(true);
-        PromoteVirtualCameraPriority(cinemachineCamera);
-        IsolateInteractionCamera(cinemachineCamera);
+            activeCinemachineCamera = cinemachineCamera;
+            cinemachineCamera.SetActive(true);
+            PromoteVirtualCameraPriority(cinemachineCamera);
+            IsolateInteractionCamera(cinemachineCamera);
+        }
+        else
+        {
+            // Non-Cinemachine camera: mimic its transform with player's main camera
+            if (playerMainCamera != null && cinemachineCamera != null)
+            {
+                Transform t = cinemachineCamera.transform;
+                playerMainCamera.transform.SetPositionAndRotation(t.position, t.rotation);
+                playerMainCamera.enabled = true;
+            }
+
+            if (cinemachineOutputCamera != null)
+                cinemachineOutputCamera.enabled = false;
+
+            activeCinemachineCamera = cinemachineCamera;
+            cinemachineCamera.SetActive(true);
+            IsolateInteractionCamera(cinemachineCamera);
+        }
     }
 
     public void EndCinemachineCameraTransition()

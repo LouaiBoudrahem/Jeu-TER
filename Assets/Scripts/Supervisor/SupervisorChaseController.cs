@@ -15,7 +15,6 @@ public class SupervisorChaseController : MonoBehaviour
         targetPlayer = player;
         chaseDuration = duration;
 
-        // Setup NavMesh Agent
         navMeshAgent = GetComponent<NavMeshAgent>();
         if (navMeshAgent == null)
         {
@@ -36,7 +35,6 @@ public class SupervisorChaseController : MonoBehaviour
                 navMeshAgent.SetDestination(targetPlayer.position);
             }
 
-            // Check if chase duration is over
             if (elapsedTime >= chaseDuration)
             {
                 isChasing = false;
@@ -45,7 +43,6 @@ public class SupervisorChaseController : MonoBehaviour
                     navMeshAgent.enabled = false;
                 }
                 
-                // Destroy after a brief delay
                 yield return new WaitForSeconds(0.5f);
                 Destroy(gameObject);
                 yield break;

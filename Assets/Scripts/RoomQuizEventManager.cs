@@ -189,6 +189,10 @@ public class RoomQuizEventManager : MonoBehaviour
     {
         quizStarted = true;
         Debug.Log("RoomQuizEventManager: Quiz event started!");
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         ObjectiveManager.Instance?.SetObjective(4);
         if (lightSwitchInteractable != null)
         {
@@ -272,6 +276,19 @@ public class RoomQuizEventManager : MonoBehaviour
             quizCanvasRoot.SetActive(true);
             EnsureQuizCanvasCanReceiveClicks();
             Debug.Log("RoomQuizEventManager: Quiz canvas activated");
+
+            if (EventSystem.current != null)
+            {
+                for (int i = 0; i < choiceButtons.Length; i++)
+                {
+                    if (choiceButtons[i] != null && choiceButtons[i].gameObject.activeInHierarchy)
+                    {
+                        EventSystem.current.SetSelectedGameObject(choiceButtons[i].gameObject);
+                        break;
+                    }
+                }
+            }
+
             if (timerDisplay != null)
                 timerDisplay.fillAmount = 1f;
             if (timerSlider != null)
@@ -472,6 +489,9 @@ public class RoomQuizEventManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (quizCanvasRoot != null)
             quizCanvasRoot.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         ObjectiveManager.Instance?.AdvanceObjective();
         quizCompleted = true;

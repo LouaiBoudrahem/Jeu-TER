@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -191,14 +192,19 @@ public class ComputerUIController : MonoBehaviour
         HidePreview();
         history.Clear();
         currentFolder = null;
+
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 
     public void HideComputerUIForExit()
     {
         if (computerRootPanel != null)
+        {
             computerRootPanel.SetActive(false);
-        else
-            SetCanvasParentsActive(false);
+        }
 
         if (explorerPanel != null)
             explorerPanel.SetActive(false);
@@ -213,31 +219,10 @@ public class ComputerUIController : MonoBehaviour
         HidePreview();
         history.Clear();
         currentFolder = null;
-    }
 
-    private void SetCanvasParentsActive(bool isActive)
-    {
-        SetParentCanvasActive(explorerPanel, isActive);
-        SetParentCanvasActive(previewPanel, isActive);
-        SetParentCanvasActive(previewText != null ? previewText.gameObject : null, isActive);
-        SetParentCanvasActive(successText != null ? successText.gameObject : null, isActive);
-        SetParentCanvasActive(previewQuizController != null ? previewQuizController.gameObject : null, isActive);
-        SetParentCanvasActive(explorerCloseButton != null ? explorerCloseButton.gameObject : null, isActive);
-        SetParentCanvasActive(previewCloseButton != null ? previewCloseButton.gameObject : null, isActive);
-        SetParentCanvasActive(backButton != null ? backButton.gameObject : null, isActive);
-    }
-
-    private static void SetParentCanvasActive(GameObject source, bool isActive)
-    {
-        if (source == null)
+        if (EventSystem.current != null)
         {
-            return;
-        }
-
-        Canvas parentCanvas = source.GetComponentInParent<Canvas>(true);
-        if (parentCanvas != null)
-        {
-            parentCanvas.gameObject.SetActive(isActive);
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 
@@ -365,6 +350,11 @@ public class ComputerUIController : MonoBehaviour
     public void ClosePreview()
     {
         HidePreview();
+    }
+
+    public bool IsPreviewOpen()
+    {
+        return previewPanel != null && previewPanel.activeSelf;
     }
 
     public void OpenVSCode()

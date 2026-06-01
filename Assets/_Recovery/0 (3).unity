@@ -6937,7 +6937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be8c5a96327455a40a420b68f8021638, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.788
+      value: 3.143
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be8c5a96327455a40a420b68f8021638, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6945,7 +6945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be8c5a96327455a40a420b68f8021638, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 84.3234
+      value: 83.505
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be8c5a96327455a40a420b68f8021638, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13649,7 +13649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
-    Enabled: 0
+    Enabled: 1
     m_Value: 1000
   OutputChannel: 1
   StandbyUpdate: 2
@@ -22213,7 +22213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 837078705}
   - component: {fileID: 837078704}
-  - component: {fileID: 837078706}
+  - component: {fileID: 837078703}
   m_Layer: 0
   m_Name: Computer (1)
   m_TagString: Untagged
@@ -22221,6 +22221,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &837078703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837078702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c237d5073ea524c8dfb7ec528cce03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Computer
+  interactionData: {fileID: 11400000, guid: cd8d25dac691c9542816740a8fe36c00, type: 2}
+  minigameSceneName: ComputerScene
+  computerVirtualCamera: {fileID: 185621562}
+  useAccessCodeMode: 0
+  accessCodeRoot: {fileID: 0}
+  accessCodeController: {fileID: 0}
+  accessCode: 1234
+  accessGrantedImage: {fileID: 0}
+  accessCodePrompt: Enter access code
+  accessGrantedMessage: Access granted
+  accessDeniedMessage: Incorrect access code
+  requireSolveOrder: 0
+  solveOrderNumberText: {fileID: 0}
+  outOfOrderMessage: Solve the computers in the shown order.
+  questionIndex: -1
+  questionId: 
+  useRandomQuestionIfIdMissing: 1
+  requiredItem: {fileID: 0}
+  requiredItemQuantity: 0
+  missingItemMessage: 
 --- !u!65 &837078704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22261,30 +22293,6 @@ Transform:
   - {fileID: 439967975}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &837078706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837078702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1259cb5a04b87549b28d78576c759f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ComputerSceneScript
-  interactionData: {fileID: 0}
-  minigameSceneName: ComputerScene
-  computerVirtualCamera: {fileID: 185621562}
-  requireSolveOrder: 0
-  solveOrderNumberText: {fileID: 0}
-  outOfOrderMessage: Solve the computers in the shown order.
-  questionIndex: -1
-  questionId: 
-  useRandomQuestionIfIdMissing: 1
-  requiredItem: {fileID: 0}
-  requiredItemQuantity: 0
-  missingItemMessage: You need {0} to use this.
 --- !u!1 &839439918
 GameObject:
   m_ObjectHideFlags: 0
@@ -37607,8 +37615,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376850810}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0049740886, y: -0.7091937, z: 0.0036542206, w: 0.70498675}
-  m_LocalPosition: {x: -76.34161, y: 6.2299004, z: 75.06408}
+  m_LocalRotation: {x: -0.007445762, y: 0.9958825, z: -0.067355454, w: -0.060214937}
+  m_LocalPosition: {x: 8.913377, y: 11.472443, z: 84.97313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43033,7 +43041,7 @@ Transform:
   m_GameObject: {fileID: 1575005647}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -71.83, y: 6.093, z: 74.604}
+  m_LocalPosition: {x: 1.28, y: 11.123, z: 83.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

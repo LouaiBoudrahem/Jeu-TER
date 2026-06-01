@@ -91,7 +91,7 @@ MonoBehaviour:
       displayName: question1.txt
       icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
       content: {fileID: 0}
-      quizQuestionIndex: 15
+      quizQuestionIndex: 6
       requiredItems: []
       requireAll: 0
       hiddenByDefault: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
       displayName: question2.txt
       icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
       content: {fileID: 0}
-      quizQuestionIndex: 16
+      quizQuestionIndex: 7
       requiredItems: []
       requireAll: 0
       hiddenByDefault: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
       displayName: question3.txt
       icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
       content: {fileID: 0}
-      quizQuestionIndex: 17
+      quizQuestionIndex: 8
       requiredItems: []
       requireAll: 0
       hiddenByDefault: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
       displayName: question4.txt
       icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
       content: {fileID: 0}
-      quizQuestionIndex: 18
+      quizQuestionIndex: 9
       requiredItems: []
       requireAll: 0
       hiddenByDefault: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
       displayName: question5.txt
       icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
       content: {fileID: 0}
-      quizQuestionIndex: 19
+      quizQuestionIndex: 10
       requiredItems: []
       requireAll: 0
       hiddenByDefault: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
       displayName: question6.txt
       icon: {fileID: 21300000, guid: f96eb01c035f93f409a0c8d72a6e0cfd, type: 3}
       content: {fileID: 0}
-      quizQuestionIndex: 20
+      quizQuestionIndex: 11
       requiredItems: []
       requireAll: 0
       hiddenByDefault: 0

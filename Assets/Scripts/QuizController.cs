@@ -8,9 +8,27 @@ using System;
 
 public class QuizController : MonoBehaviour
 {
+    private const float MaxUiSoundDurationSeconds = 2f;
+    private const float HintPenaltyThirtyPercent = 0.30f;
+
     public static QuestionData PendingQuestion;
     public static int CurrentScore { get; private set; }
+    public static int HintsUsedCount { get; private set; }
     public static event Action<QuestionData, bool> QuestionResultEvaluated;
+
+    public static void ResetScore()
+    {
+        CurrentScore = 0;
+        objective400Advanced = false;
+        objective600Advanced = false;
+        objective800Advanced = false;
+
+        QuizController instance = FindAnyInstance();
+        if (instance != null)
+        {
+            instance.RefreshScoreUI();
+        }
+    }
 
     private static bool objective400Advanced;
     private static bool objective600Advanced;
@@ -40,6 +58,19 @@ public class QuizController : MonoBehaviour
     [Header("Close UI")]
     [SerializeField] private Button closeButton;
 
+    [Header("Hint UI")]
+    [SerializeField] private Button hintButton;
+    [SerializeField] private InventoryItem requiredHintItem;
+    [SerializeField, Min(1)] private int requiredHintItemQuantity = 1;
+
+    [Header("Hint Penalty")]
+    [SerializeField] private bool useHalfScorePenalty = false;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip answerSelectedClip;
+    [SerializeField] private AudioClip closeClickClip;
+    [SerializeField] private AudioSource audioSource;
+
     [Header("Answer Hover Shadow")]
     [SerializeField] private bool autoSetupAnswerHoverShadow = true;
     [SerializeField, Range(0f, 1f)] private float answerTmpOutlineWidthOnHover = 0.25f;
@@ -47,6 +78,7 @@ public class QuizController : MonoBehaviour
     private Button[] multipleChoiceButtons;
     private Button[] trueFalseButtons;
     private bool rewardGrantedForCurrentQuestion;
+    private bool hintUsedForCurrentQuestion;
     private UnityAction closeButtonAction;
 
     private void Awake()
@@ -101,7 +133,7 @@ public class QuizController : MonoBehaviour
         if (closeButton != null)
         {
             closeButton.onClick.RemoveAllListeners();
-            closeButton.onClick.AddListener(closeButtonAction ?? CloseQuiz);
+            closeButton.onClick.AddListener(OnCloseButtonPressed);
         }
     }
 
@@ -200,9 +232,14 @@ public class QuizController : MonoBehaviour
             shortAnswerSubmitButton.onClick.AddListener(SubmitShortAnswer);
         }
 
+        if (hintButton != null)
+        {
+            hintButton.onClick.AddListener(OnHintButtonPressed);
+        }
+
         if (closeButton != null)
         {
-            closeButton.onClick.AddListener(closeButtonAction ?? CloseQuiz);
+            closeButton.onClick.AddListener(OnCloseButtonPressed);
         }
     }
 
@@ -235,6 +272,11 @@ public class QuizController : MonoBehaviour
             shortAnswerSubmitButton.onClick.RemoveAllListeners();
         }
 
+        if (hintButton != null)
+        {
+            hintButton.onClick.RemoveAllListeners();
+        }
+
         if (closeButton != null)
         {
             closeButton.onClick.RemoveAllListeners();
@@ -261,6 +303,7 @@ public class QuizController : MonoBehaviour
         if (hintText != null)
         {
             hintText.text = string.IsNullOrWhiteSpace(questionData.hint) ? string.Empty : questionData.hint;
+            hintText.gameObject.SetActive(false);
         }
 
         if (feedbackText != null)
@@ -269,7 +312,15 @@ public class QuizController : MonoBehaviour
         }
 
         rewardGrantedForCurrentQuestion = false;
+        hintUsedForCurrentQuestion = false;
         UpdateScoreText();
+
+        if (hintButton != null)
+        {
+            bool hasHint = !string.IsNullOrWhiteSpace(questionData.hint);
+            hintButton.gameObject.SetActive(hasHint);
+            hintButton.interactable = hasHint && CanUseHintItemRequirement();
+        }
 
         if (multipleChoiceGroup != null)
         {
@@ -355,6 +406,11 @@ public class QuizController : MonoBehaviour
         SetupHoverShadowForButtons(multipleChoiceButtons);
         SetupHoverShadowForButtons(trueFalseButtons);
 
+        if (hintButton != null)
+        {
+            SetupHoverShadowForButtons(new[] { hintButton });
+        }
+
         if (closeButton != null)
         {
             SetupHoverShadowForButtons(new[] { closeButton });
@@ -392,6 +448,7 @@ public class QuizController : MonoBehaviour
             return;
         }
 
+        PlayUiSound(answerSelectedClip);
         bool isCorrect = selectedIndex == questionData.correctOptionIndex;
         ShowResult(isCorrect);
     }
@@ -403,6 +460,7 @@ public class QuizController : MonoBehaviour
             return;
         }
 
+        PlayUiSound(answerSelectedClip);
         string normalizedAnswer = questionData.answer == null ? string.Empty : questionData.answer.Trim().ToLowerInvariant();
         bool correctValue = normalizedAnswer == "true";
         ShowResult(selectedValue == correctValue);
@@ -415,11 +473,89 @@ public class QuizController : MonoBehaviour
             return;
         }
 
+        PlayUiSound(answerSelectedClip);
         string playerAnswer = shortAnswerInput != null ? shortAnswerInput.text.Trim() : string.Empty;
         string correctAnswer = questionData.answer == null ? string.Empty : questionData.answer.Trim();
 
         bool isCorrect = string.Equals(playerAnswer, correctAnswer, System.StringComparison.OrdinalIgnoreCase);
         ShowResult(isCorrect);
+    }
+
+    private void OnHintButtonPressed()
+    {
+        if (questionData == null || hintUsedForCurrentQuestion)
+        {
+            return;
+        }
+
+        if (!CanUseHintItemRequirement())
+        {
+            ShowHintRequirementMessage();
+            return;
+        }
+
+        if (requiredHintItem != null && !InventoryManager.RemoveItem(requiredHintItem, requiredHintItemQuantity))
+        {
+            ShowHintRequirementMessage();
+            return;
+        }
+
+        if (hintText != null)
+        {
+            hintText.gameObject.SetActive(true);
+            hintText.enabled = true;
+        }
+
+        hintUsedForCurrentQuestion = true;
+        HintsUsedCount++;
+
+        if (hintButton != null)
+        {
+            hintButton.interactable = false;
+        }
+    }
+
+    private bool CanUseHintItemRequirement()
+    {
+        if (requiredHintItem == null)
+        {
+            return true;
+        }
+
+        return InventoryManager.HasItem(requiredHintItem, requiredHintItemQuantity);
+    }
+
+    private void ShowHintRequirementMessage()
+    {
+        string itemName = requiredHintItem != null && !string.IsNullOrWhiteSpace(requiredHintItem.ItemName)
+            ? requiredHintItem.ItemName
+            : "the required item";
+
+        string message = $"You need {requiredHintItemQuantity} {itemName} to reveal the hint.";
+
+        if (feedbackText != null)
+        {
+            feedbackText.text = message;
+        }
+
+        TransientDebugConsoleUI.Log(message);
+    }
+
+    private int GetAwardedPointsForCurrentQuestion()
+    {
+        const int basePoints = 100;
+
+        if (!hintUsedForCurrentQuestion)
+        {
+            return basePoints;
+        }
+
+        if (useHalfScorePenalty)
+        {
+            return Mathf.FloorToInt(basePoints * 0.5f);
+        }
+
+        return Mathf.FloorToInt(basePoints * (1f - HintPenaltyThirtyPercent));
     }
 
     private void ShowResult(bool isCorrect)
@@ -433,7 +569,7 @@ public class QuizController : MonoBehaviour
 
         if (isCorrect && !rewardGrantedForCurrentQuestion && questionData != null)
         {
-            awardedPoints = 100;
+            awardedPoints = GetAwardedPointsForCurrentQuestion();
             CurrentScore += awardedPoints;
             rewardGrantedForCurrentQuestion = true;
         }
@@ -488,5 +624,63 @@ public class QuizController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnCloseButtonPressed()
+    {
+        PlayUiSound(closeClickClip);
+
+        if (closeButtonAction != null)
+        {
+            closeButtonAction.Invoke();
+            return;
+        }
+
+        CloseQuiz();
+    }
+
+    private void PlayUiSound(AudioClip clip)
+    {
+        if (clip == null)
+        {
+            return;
+        }
+
+        EnsureAudioSource();
+        if (audioSource != null)
+        {
+            if (clip.length <= MaxUiSoundDurationSeconds)
+            {
+                audioSource.PlayOneShot(clip);
+                return;
+            }
+
+            float volumeScale = MaxUiSoundDurationSeconds / clip.length;
+            audioSource.PlayOneShot(clip, Mathf.Clamp01(volumeScale));
+        }
+    }
+
+    private void EnsureAudioSource()
+    {
+        if (audioSource != null)
+        {
+            return;
+        }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
+    private void RefreshScoreUI()
+    {
+        UpdateScoreText();
+    }
+
+    private static QuizController FindAnyInstance()
+    {
+        return FindObjectOfType<QuizController>();
     }
 }

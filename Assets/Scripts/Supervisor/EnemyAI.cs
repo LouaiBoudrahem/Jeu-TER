@@ -98,43 +98,30 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("EnemyAI: Set to Chase state");
     }
 
-    /// <summary>
-    /// Instantly teleports the enemy to the given Transform's position and
-    /// resumes patrol from there. Safe to call at any time.
-    /// </summary>
     public void TeleportTo(Transform destination)
     {
         TeleportTo(destination.position);
     }
 
-    /// <summary>
-    /// Instantly teleports the enemy to a world-space position and resumes
-    /// patrol from there. Uses agent.Warp() so the NavMeshAgent doesn't
-    /// rubber-band back to its previous destination.
-    /// </summary>
+
     public void TeleportTo(Vector3 worldPosition)
     {
-        // Stop the agent and clear its current path so it doesn't
-        // fight the warp and snap back on the next frame.
+
         if (agent != null)
         {
             agent.isStopped = true;
             agent.ResetPath();
         }
 
-        // Warp is the only reliable way to reposition a NavMeshAgent.
-        // Setting transform.position directly gets overridden by the agent.
         if (agent != null && agent.isOnNavMesh)
         {
             agent.Warp(worldPosition);
         }
         else
         {
-            // Fallback if the agent isn't on the mesh yet (e.g. called before Start).
             transform.position = worldPosition;
         }
 
-        // Reset all mid-state tracking so patrol starts cleanly from here.
         isWaiting            = false;
         waitTimer            = 0f;
         investigateTimer     = 0f;
@@ -143,7 +130,6 @@ public class EnemyAI : MonoBehaviour
         patrolWaitLookStateName  = string.Empty;
         currentAnimationState    = string.Empty;
 
-        // Force back into Patrol and head to the next patrol point.
         state = EnemyState.Patrol;
 
         if (agent != null)

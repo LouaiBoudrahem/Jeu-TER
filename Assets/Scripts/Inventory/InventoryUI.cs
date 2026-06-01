@@ -630,7 +630,6 @@ public class InventoryUI : MonoBehaviour
         RefreshUI(0);
     }
 
-    // Call this from ExamPaperMinigameController when the exam is finished (not just closed)
     public void NotifyExamCompleted()
     {
         examCompleted = true;

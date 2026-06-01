@@ -7,7 +7,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     [SerializeField] private InventoryItem itemToPickup;
     [SerializeField] private int quantity = 1;
     [SerializeField] private bool destroyAfterPickup = true;
-    [SerializeField] private string interactionPrompt = "Pick up ";
+    [SerializeField] private string interactionPrompt = "Ramasser ";
 
     void Start()
     {

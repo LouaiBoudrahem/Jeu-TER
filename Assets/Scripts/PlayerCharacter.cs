@@ -118,9 +118,12 @@ public class PlayerCharacter : MonoBehaviour, ICharacterController
 
             hitSomething = true;
 
-            if (interactable is Computer computer)
+            // If the interactable has a `Player` property, assign it so the interactable knows who the player is.
+            var interactableType = interactable.GetType();
+            var playerProp = interactableType.GetProperty("Player");
+            if (playerProp != null && playerProp.PropertyType == typeof(Player) && playerProp.CanWrite)
             {
-                computer.Player = Player;
+                playerProp.SetValue(interactable, Player);
             }
 
             return interactable;

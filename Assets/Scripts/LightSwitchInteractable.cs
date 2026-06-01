@@ -12,6 +12,10 @@ public class LightSwitchInteractable : MonoBehaviour, IInteractable
     [SerializeField] private float switchOnRotationX = 20f;
     [SerializeField] private bool startOn;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip toggleClip;
+    [SerializeField] private AudioSource audioSource;
+
     private Quaternion switchOffLocalRotation;
     private bool isOn;
 
@@ -22,22 +26,27 @@ public class LightSwitchInteractable : MonoBehaviour, IInteractable
             switchOffLocalRotation = switchHandle.localRotation;
         }
 
-        ApplyState(startOn);
+        ApplyState(startOn, false);
     }
 
     public void Interact()
     {
-        ApplyState(!isOn);
+        ApplyState(!isOn, true);
     }
 
     public void SetState(bool turnOn)
     {
-        ApplyState(turnOn);
+        ApplyState(turnOn, true);
     }
 
-    private void ApplyState(bool turnOn)
+    private void ApplyState(bool turnOn, bool playSound)
     {
         isOn = turnOn;
+
+        if (playSound)
+        {
+            PlayToggleSound();
+        }
 
         float targetIntensity = isOn ? onIntensity : offIntensity;
         if (lights != null)
@@ -56,6 +65,34 @@ public class LightSwitchInteractable : MonoBehaviour, IInteractable
             switchHandle.localRotation = isOn
                 ? switchOffLocalRotation * Quaternion.Euler(switchOnRotationX, 0f, 0f)
                 : switchOffLocalRotation;
+        }
+    }
+
+    private void PlayToggleSound()
+    {
+        if (toggleClip == null)
+        {
+            return;
+        }
+
+        EnsureAudioSource();
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(toggleClip);
+        }
+    }
+
+    private void EnsureAudioSource()
+    {
+        if (audioSource != null)
+        {
+            return;
+        }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 }

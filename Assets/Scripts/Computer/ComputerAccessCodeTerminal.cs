@@ -104,7 +104,6 @@ public class ComputerAccessCodeTerminal : MonoBehaviour
         if (accessGrantedImage != null)
         {
             accessGrantedImage.sprite = grantedImage != null ? grantedImage.sprite : null;
-            // Preserve visible state if already unlocked, otherwise hide until unlock
             if (!isUnlocked)
             {
                 accessGrantedImage.gameObject.SetActive(false);
@@ -120,7 +119,6 @@ public class ComputerAccessCodeTerminal : MonoBehaviour
 
         EnsureEventSystem();
         EnsureCanvasCanReceiveClicks();
-        // preserve existing unlocked state across open/close; reflect it in UI
         SetUnlockedState(isUnlocked);
         SetPrompt(accessCodePrompt);
         SetFeedback(string.Empty, false);
@@ -241,7 +239,6 @@ public class ComputerAccessCodeTerminal : MonoBehaviour
 
         ComputerSolveOrderState.SetOrder(numbers);
 
-        // If target computers are assigned, map each label's number to the corresponding computer
         if (targetComputers != null && targetComputers.Length > 0)
         {
             int m = Mathf.Min(numbers.Count, targetComputers.Length);

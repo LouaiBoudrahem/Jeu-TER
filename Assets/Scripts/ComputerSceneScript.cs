@@ -4,21 +4,13 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 
-public class Computer : MonoBehaviour, IInteractable
+public class ComputerSceneScript : MonoBehaviour, IInteractable
 {
     [SerializeField] private InteractionData interactionData;
     [SerializeField] private string minigameSceneName;
     [SerializeField] private GameObject computerVirtualCamera;
 
-    [Header("Access Code Mode")]
-    [SerializeField] private bool useAccessCodeMode = false;
-    [SerializeField] private GameObject accessCodeRoot;
-    [SerializeField] private ComputerAccessCodeTerminal accessCodeController;
-    [SerializeField] private string accessCode = "1234";
-    [SerializeField] private Image accessGrantedImage;
-    [SerializeField] private string accessCodePrompt = "Enter access code";
-    [SerializeField] private string accessGrantedMessage = "Access granted";
-    [SerializeField] private string accessDeniedMessage = "Incorrect access code";
+    // Access code mode removed per request.
 
     [Header("Solve Order")]
     [SerializeField] private bool requireSolveOrder = false;
@@ -33,7 +25,7 @@ public class Computer : MonoBehaviour, IInteractable
     [SerializeField] private string missingItemMessage = "You need {0} to use this.";
 
     public Player Player { get; set; }
-    private static Computer activeQuizComputer;
+    private static ComputerSceneScript activeQuizComputer;
     private bool waitingForQuizResult;
     private bool isSolved;
 
@@ -48,8 +40,11 @@ public class Computer : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        Debug.Log($"ComputerSceneScript.Interact called on '{name}'; minigameSceneName='{minigameSceneName}'");
+
         if (Player == null)
         {
+            Debug.LogWarning($"ComputerSceneScript.Interact: Player is null on '{name}'");
             return;
         }
 
@@ -68,17 +63,6 @@ public class Computer : MonoBehaviour, IInteractable
             return;
         }
 
-        if (useAccessCodeMode)
-        {
-            OpenAccessCodeMode();
-            return;
-        }
-
-        if (IsLinuxScene() || IsComputerScene())
-        {
-            OpenLinuxMinigame();
-            return;
-        }
 
         int solveOrderNumber = ResolveSolveOrderNumber();
         if (requireSolveOrder && !ComputerSolveOrderState.CanAttempt(solveOrderNumber))
@@ -100,6 +84,7 @@ public class Computer : MonoBehaviour, IInteractable
 
         if (string.IsNullOrWhiteSpace(minigameSceneName))
         {
+            Debug.LogWarning($"ComputerSceneScript.Interact on '{name}': minigameSceneName is empty.");
             return;
         }
 
@@ -113,6 +98,7 @@ public class Computer : MonoBehaviour, IInteractable
 
         if (!SceneManager.GetSceneByName(minigameSceneName).isLoaded)
         {
+            Debug.Log($"ComputerSceneScript: Loading additive scene '{minigameSceneName}' for '{name}'");
             SceneManager.sceneLoaded -= HandleMinigameSceneLoaded;
             SceneManager.sceneLoaded += HandleMinigameSceneLoaded;
             SceneManager.LoadScene(minigameSceneName, LoadSceneMode.Additive);
@@ -130,63 +116,6 @@ public class Computer : MonoBehaviour, IInteractable
         }
     }
 
-    private void OpenAccessCodeMode()
-    {
-        if (computerVirtualCamera == null)
-        {
-            TransientDebugConsoleUI.LogWarning($"Computer.Interact on '{name}': computerVirtualCamera is not assigned.");
-            return;
-        }
-
-        ComputerAccessCodeTerminal controller = accessCodeController;
-        if (controller == null && accessCodeRoot != null)
-        {
-            controller = accessCodeRoot.GetComponentInChildren<ComputerAccessCodeTerminal>(true);
-        }
-
-        if (controller == null)
-        {
-            TransientDebugConsoleUI.LogWarning($"Computer.Interact on '{name}': accessCodeController is not assigned.");
-            return;
-        }
-
-        GameObject terminalRoot = accessCodeRoot != null ? accessCodeRoot : controller.gameObject;
-        terminalRoot.SetActive(true);
-
-        Player.BeginComputerInteraction(computerVirtualCamera, null);
-        controller.Begin(
-            accessCode,
-            accessGrantedImage,
-            accessCodePrompt,
-            accessGrantedMessage,
-            accessDeniedMessage,
-            HandleAccessCodeTerminalClosed);
-    }
-
-    private void OpenLinuxMinigame()
-    {
-        if (IsLinuxScene())
-        {
-            LinuxMinigameController linux = FindObjectOfType<LinuxMinigameController>(true);
-            if (linux != null)
-            {
-                linux.OpenMinigame(computerVirtualCamera);
-                return;
-            }
-        }
-
-        if (IsComputerScene())
-        {
-            ComputerMinigameController comp = FindObjectOfType<ComputerMinigameController>(true);
-            if (comp != null)
-            {
-                comp.OpenMinigame(computerVirtualCamera);
-                return;
-            }
-        }
-
-        OpenAdditiveSceneMinigame();
-    }
 
     private void OpenAdditiveSceneMinigame()
     {
@@ -206,19 +135,6 @@ public class Computer : MonoBehaviour, IInteractable
         controller.OpenMinigame(computerVirtualCamera, minigameSceneName);
     }
 
-    private void HandleAccessCodeTerminalClosed()
-    {
-        Player.EndComputerInteraction();
-
-        if (accessCodeRoot != null)
-        {
-            accessCodeRoot.SetActive(false);
-        }
-        else if (accessCodeController != null)
-        {
-            accessCodeController.gameObject.SetActive(false);
-        }
-    }
 
     private void HandleQuizResult(QuestionData question, bool isCorrect)
     {
@@ -226,8 +142,6 @@ public class Computer : MonoBehaviour, IInteractable
         {
             return;
         }
-
-        isSolved = true;
 
         int solveOrderNumber = ResolveSolveOrderNumber();
         if (requireSolveOrder && solveOrderNumber > 0)
@@ -238,31 +152,24 @@ public class Computer : MonoBehaviour, IInteractable
         activeQuizComputer = null;
         UnsubscribeFromQuizResult();
 
-        MinigameManager minigameManager = FindObjectOfType<MinigameManager>();
-        if (minigameManager != null)
+        ComputerUIController uiController = FindObjectOfType<ComputerUIController>(true);
+        if (uiController != null)
         {
-            minigameManager.ExitMinigame();
+            uiController.ClosePreview();
         }
-        else if (Player != null)
-        {
-            Player.EndComputerInteraction();
-        }
-
-        Collider col = GetComponent<Collider>();
-        if (col != null)
-            col.enabled = false;
-
-        this.enabled = false;
     }
 
     private void HandleMinigameSceneLoaded(Scene loadedScene, LoadSceneMode loadMode)
     {
+        Debug.Log($"HandleMinigameSceneLoaded called for scene '{loadedScene.name}' (expected '{minigameSceneName}')");
+
         if (!string.Equals(loadedScene.name, minigameSceneName, System.StringComparison.Ordinal))
         {
             return;
         }
 
         SceneManager.sceneLoaded -= HandleMinigameSceneLoaded;
+        Debug.Log($"Additive scene '{loadedScene.name}' matched expected; activating roots and opening explorer for '{name}'");
         OpenComputerExplorerUI();
     }
 
@@ -297,16 +204,45 @@ public class Computer : MonoBehaviour, IInteractable
         UnsubscribeFromQuizResult();
     }
 
+    private void Update()
+    {
+        ComputerUIController uiController = FindObjectOfType<ComputerUIController>(true);
+
+        if (uiController != null && uiController.IsPreviewOpen())
+        {
+            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                uiController.ClosePreview();
+                return;
+            }
+        }
+
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (Player != null)
+            {
+                Player.EndComputerInteraction();
+            }
+
+            Scene scene = SceneManager.GetSceneByName(minigameSceneName);
+            if (scene.IsValid() && scene.isLoaded)
+            {
+                SceneManager.sceneLoaded -= HandleMinigameSceneLoaded;
+                SceneManager.UnloadSceneAsync(scene.name);
+            }
+
+            MinigameManager minigameManager = FindObjectOfType<MinigameManager>();
+            if (minigameManager != null)
+            {
+                minigameManager.ExitMinigame();
+            }
+        }
+    }
+
     private bool IsLinuxScene()
     {
         return !string.IsNullOrWhiteSpace(minigameSceneName) &&
                string.Equals(minigameSceneName, "Linux", System.StringComparison.OrdinalIgnoreCase);
-    }
-
-    private bool IsComputerScene()
-    {
-        return !string.IsNullOrWhiteSpace(minigameSceneName) &&
-               string.Equals(minigameSceneName, "ComputerScene", System.StringComparison.OrdinalIgnoreCase);
     }
 
     private bool HasRequiredItem()
@@ -351,62 +287,6 @@ public class Computer : MonoBehaviour, IInteractable
         return null;
     }
 
-    private void Update()
-    {
-        if (IsLinuxScene())
-        {
-            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
-            {
-                LinuxMinigameController linux = FindObjectOfType<LinuxMinigameController>(true);
-                if (linux != null)
-                {
-                    linux.CloseMinigame();
-                    return;
-                }
-
-                if (Player != null)
-                {
-                    Player.EndComputerInteraction();
-                }
-
-                Scene scene = SceneManager.GetSceneByName(minigameSceneName);
-                if (scene.IsValid() && scene.isLoaded)
-                {
-                    SceneManager.sceneLoaded -= HandleMinigameSceneLoaded;
-                    SceneManager.UnloadSceneAsync(scene.name);
-                }
-
-                MinigameManager minigameManager = FindObjectOfType<MinigameManager>();
-                if (minigameManager != null)
-                {
-                    minigameManager.ExitMinigame();
-                }
-
-                return;
-            }
-        }
-
-        if (!useAccessCodeMode)
-        {
-            return;
-        }
-
-        GameObject terminalRoot = accessCodeRoot != null ? accessCodeRoot : (accessCodeController != null ? accessCodeController.gameObject : null);
-        if (terminalRoot == null || !terminalRoot.activeInHierarchy)
-        {
-            return;
-        }
-
-        if (IsEscapePressed())
-        {
-            HandleAccessCodeTerminalClosed();
-        }
-    }
-
-    private static bool IsEscapePressed()
-    {
-        return (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame);
-    }
 
     private int ResolveSolveOrderNumber()
     {
