@@ -16,8 +16,8 @@ TagManager:
   - QuestionLayer
   - LeavesLayer
   - ComuterLayer
-  - 
-  - 
+  - CapsuleLayer
+  - ObstacleLayer
   - 
   - 
   - 

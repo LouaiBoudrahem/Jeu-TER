@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Prefabs/Scenes/ComputerScene.unity
     guid: c662ae203dc187442bb1b99c2b69ebae
+  - enabled: 1
+    path: Assets/Prefabs/Scenes/MoonPuzzle.unity
+    guid: ec7ca83666751c34f8a3a98c534b337f
+  - enabled: 1
+    path: Assets/Prefabs/Scenes/VendingMachine.unity
+    guid: 0fa1b987ce3226548b7a17b0e802760a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
